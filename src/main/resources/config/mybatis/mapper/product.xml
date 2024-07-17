@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+
+	<!-- 상품추가 -->
+	<insert id = "product_insert" parameterType="product">
+		insert into product values(
+				product_seq.nextVal,
+				#{productname},
+				#{price},
+				#{content},
+				#{productimage_path},
+				sysdate,
+				#{productquantity} <!-- 재고 -->
+		)
+	</insert>
+	
+	<!-- 상품 사진 수정 -->
+	<update id = "productmodify_image" parameterType="product">
+		update product set productimage_path=#{productimage_path} where productnum=#{productnum}
+	</update>
+
+	<!-- 상품 전체 조회 -->
+	<select id = "product_selectAll" parameterType="product">
+		select * from product
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
