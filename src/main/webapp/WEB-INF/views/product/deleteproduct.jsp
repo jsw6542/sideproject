@@ -4,7 +4,7 @@
 	<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>상품삭제페이지</title>
+		<title>상품삭제페이지 삭제페이지가 필요할까?</title>
 		
 		<script src="/sideproject/resources/js/httpRequest.js"></script>
 		
