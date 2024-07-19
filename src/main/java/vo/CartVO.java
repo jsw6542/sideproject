@@ -1,33 +1,29 @@
 package vo;
 
+import java.sql.Timestamp;
+
 public class CartVO {
 		
-	private int cartnum,productnum,quantity;
-	public int getProductnum() {
-		return productnum;
+	private int cartnum;
+	private Timestamp created;
+	private String memberid;
+	
+
+	public String getMemberid() {
+		return memberid;
 	}
 
-	public void setProductnum(int productnum) {
-		this.productnum = productnum;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 
-	public int getQuantity() { //수량
-		return quantity;
+	public Timestamp getCreated() {
+		return created;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setCreated(Timestamp created) {
+		this.created = created;
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	private String id;
 
 	public int getCartnum() {
 		return cartnum;

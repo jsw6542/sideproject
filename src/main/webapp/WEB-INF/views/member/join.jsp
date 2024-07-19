@@ -73,11 +73,11 @@
 <script>
 	function send_check(f) {
 
-		let name = f.name.value.trim();
+		let name = f.membername.value.trim();
 		let pwd = f.pwd.value.trim();
 		let nickname = f.nickname.value.trim();
 		let email1 = f.email1.value.trim();
-		let id = f.id.value.trim();
+		let id = f.memberid.value.trim();
 		let zipcode = f.zip_code.value.trim();
 		let pwdchk = f.pwdchk.value.trim();
 		let email2 = f.email2.value.trim();
@@ -150,7 +150,7 @@
 
 	function check_id(f) {
 
-		let id = f.id.value.trim();
+		let id = f.memberid.value.trim();
 
 		if (id == '') {
 			alert("아이디를 입력하세요");
@@ -158,7 +158,7 @@
 		}
 
 		let url = "checkid.do";
-		let param = "id=" + id;
+		let param = "memberid=" + id;
 
 		sendRequest(url, param, checkFn, "post");
 	}
@@ -223,7 +223,7 @@
 
             <div class="form-group">
                 <label for="name">이름</label>
-                <input id="name" name="name" size="15">
+                <input id="name" name="membername" size="15">
             </div>
 
             <div class="form-group">
@@ -238,14 +238,13 @@
                     <option value="hanmail.net">hanmail.net</option>
                     <option value="nate.com">nate.com</option>
                     <option value="daum.net">daum.net</option>
-                    <option value="direct">직접 입력</option>
                 </select>
                 <input type="text" id="direct-input" name="direct_email" style="display: none;" placeholder="직접 입력">
             </div>
 
             <div class="form-group">
                 <label for="id">아이디</label>
-                <input id="id" name="id" size="15">
+                <input id="id" name="memberid" size="15">
                 <input type="button" value="중복검사" onclick="check_id(this.form);">
             </div>
             

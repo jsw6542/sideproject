@@ -4,28 +4,24 @@
 	<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>상품삭제페이지</title>
 		
 		<script src="/sideproject/resources/js/httpRequest.js"></script>
 		
 		<script>
 			function send(f) {
 				
-				let id = f.id.value;
-				let pwd = f.pwd.value;
-				let pwd_chk = f.pwd_chk.value;
+				let name = f.productname.value;
+				let num = f.productnum.value;
 				
-				if( pwd != pwd_chk ) {
-					alert("비밀번호가 일치하지 않습니다");
-					return;
-				}
 				
-				if( !confirm('탈퇴 하시겠습니까?') ){
+				
+				if( !confirm('삭제 하시겠습니까?') ){
 					return;
 				}
 				
 				let url= "delete.do";
-				let param = "id="+id+"&pwd="+pwd;			
+				let param = "productname="+name+"&productnum="+num;			
 				sendRequest(url, param, resultFn, "post");
 				
 			}
@@ -39,12 +35,12 @@
 					
 					
 					if(data == 'no') {
-						alert("탈퇴 실패");
+						alert("삭제 실패");
 						return;
 					}
 					
-					alert("탈퇴 완료!");
-					location.href="logout.do";
+					alert("삭제 완료!");
+					location.href="productlist.do";
 				}
 			}
 		</script>
@@ -53,19 +49,19 @@
 	
 	<body>
 	<form>
-	<input type="hidden" name="id" value="${login.id}">
+	<input type="hidden" name="productnum" value="${product.productnum}">
 	<input type="hidden" name="pwd" value="${login.pwd}">
 		<table>
 			<caption>회원 탈퇴</caption>
 				
 				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="chk"></td>
+					<td>삭제할 상품 이름</td>
+					<td><input type="text" name="productname"></td>
 				</tr>
 				
 				<tr>
 					<td>
-					<input type = "button" value="탈퇴하기" onclick="send(this.form);">
+					<input type = "button" value="삭제하기" onclick="send(this.form);">
 					</td>
 				</tr>
 				

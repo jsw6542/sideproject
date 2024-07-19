@@ -11,8 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import dao.CartDAO;
 import dao.MemberDAO;
+import vo.CartVO;
 import vo.MemberVO;
 
 @Controller
@@ -32,6 +33,7 @@ public class MemberController {
 	
 	MemberDAO member_dao;
 	
+	
 	// 홈페이지,초기화면
 	@RequestMapping(value = { "/", "/home.do" })
 	public String homePage() {
@@ -48,8 +50,9 @@ public class MemberController {
 	@RequestMapping("/join.do")
 	// 회원가입 처리
 	public String joinId(MemberVO vo) {
-			member_dao.join(vo);
-			request.setAttribute("vo", vo);
+		member_dao.join(vo);
+		request.setAttribute("vo", vo);
+		
 		return "redirect:home.do";
 	}
 		
@@ -60,8 +63,8 @@ public class MemberController {
 		
 		if(id != null) {
 			
-			request.setAttribute("id", id.getId());
-			request.setAttribute("name", id.getName());
+			request.setAttribute("id", id.getMemberid());
+			request.setAttribute("name", id.getMembername());
 			
 			return VIEW_PATH + "Checkid.jsp";
 			
@@ -101,7 +104,7 @@ public class MemberController {
 		}
 		return VIEW_PATH + "login.jsp";
 	}
-
+	
 	// 로그인 처리
 	@RequestMapping("/login.do")
 	public String login(MemberVO vo, HttpSession session) {
@@ -109,7 +112,7 @@ public class MemberController {
 
 		if (login != null) {
 			session.setAttribute("login", login);
-			
+				
 			return "redirect:home.do";
 		}
 		return "redirect:login_form.do?fail=o";

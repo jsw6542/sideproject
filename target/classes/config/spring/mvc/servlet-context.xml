@@ -50,6 +50,9 @@
 		<beans:constructor-arg ref="ordersBean"></beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean class = "com.side.project.CartitemsController">
+		<beans:constructor-arg ref="cartitemsBean"/>
+	</beans:bean>
 	
 </beans:beans>
 

@@ -3,9 +3,8 @@ package vo;
 
 public class MemberVO {
 
-	
-	
-	private String id,pwd,name,zip_code,address1,address2,address3,regdate,nickname,email1,email2;
+	private String pwd,zip_code,address1,address2,address3,regdate,nickname,email1,email2;//id,name,제거
+	private String memberid,membername;
 
 	public String getEmail1() {
 		return email1;
@@ -63,20 +62,20 @@ public class MemberVO {
 		this.pwd = pwd;
 	}
 
-	public String getId() {
-		return id;
+	public String getMemberid() {
+		return memberid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 
-	public String getName() {
-		return name;
+	public String getMembername() {
+		return membername;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMembername(String membername) {
+		this.membername = membername;
 	}
 
 	public String getZip_code() {

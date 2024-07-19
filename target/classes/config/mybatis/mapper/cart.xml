@@ -3,8 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="c">
-
+	<!-- 장바구니생성 -->
+	<insert id = "cart_create" parameterType="cart">
+		insert into cart values(
+				cart_seq.nextVal,
+				#{memberid}
+		)
+	</insert>
 	
+	<!-- 장바구니가 존재하는지 확인 -->
+	<select id="cart_selectCartByMemberId" parameterType="String" resultType="cart">
+		select * from cart where memberid = #{memberid}
+	</select>
+	
+	 <!-- 장바구니 아이템 조회 -->
+     <!-- <select id="cart_selectCartItemsByCartNum" parameterType="int" >
+        SELECT * FROM cartitems WHERE cartnum = #{cartnum}
+    </select>  -->
 </mapper>
 
 

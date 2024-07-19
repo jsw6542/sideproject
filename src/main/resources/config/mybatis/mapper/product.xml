@@ -23,9 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<!-- 상품 전체 조회 -->
-	<select id = "product_selectAll" parameterType="product">
+	<select id = "product_selectAll" parameterType="product" resultType="product">
 		select * from product
 	</select>
+	
+	<!-- 상품 상세조회 -->
+	 <select id="product_selectDetail" parameterType="product" resultType="Product"> <!-- 오류날시 파라미터int로 -->
+        select * from product where productnum = #{productnum}
+    </select> 
 
 </mapper>
 

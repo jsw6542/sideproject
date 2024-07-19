@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.ProductDAO;
@@ -75,7 +76,7 @@ public class ProductController {
 			
 			//파일을 저장할 경로
 			File saveFile = new File(savePath, productimage_path);
-			System.out.println("테스트1");
+			//System.out.println("테스트1");
 			if (!saveFile.exists()) {
 				saveFile.mkdirs();
 			} else {
@@ -92,14 +93,14 @@ public class ProductController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("테스트2");
+		//System.out.println("테스트2");
 		System.out.println(productimage_path);
 		
 		vo.setProductimage_path(productimage_path); //"resources/game_img/" + filename이였음
 		
 		//vo의 내용을 db로 전달
 		product_dao.insert(vo);
-		System.out.println("테스트3");
+		//System.out.println("테스트3");
 		/*
 		 * String result = "no"; if (res != 0) { result = "yes"; } 였음
 		 */
@@ -116,4 +117,14 @@ public class ProductController {
 		model.addAttribute("productlist", productlist);
 		return VIEW_PATH + "list.jsp";
 	}
+	
+	//상품 상세페이지
+	@RequestMapping("/productdetail.do")
+	public String productdetail(@RequestParam("productnum") int productnum, Model model ) {
+		ProductVO productdetail = product_dao.selectdetail(productnum);
+		model.addAttribute("product", productdetail);
+	    return VIEW_PATH + "listdetail.jsp";
+	}
+	
+	
 }

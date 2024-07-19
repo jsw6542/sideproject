@@ -3,11 +3,11 @@ package vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductVO {
+
 	private MultipartFile productimage;
 	
 	private int productnum;
 	private String productname,price,content,productimage_path,productregdate,productquantity;
-	
 	public MultipartFile getProductimage() {
 		return productimage;
 	}
@@ -56,5 +56,6 @@ public class ProductVO {
 	public void setProductquantity(String productquantity) {
 		this.productquantity = productquantity;
 	}
+	
 	
 }

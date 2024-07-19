@@ -5,25 +5,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 목록</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .product_list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+    }
+    .product_item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product_item img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+    .product_info {
+        padding: 15px;
+    }
+    .product_info h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+    .product_info p {
+        color: #555;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    .product_info .price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+    }
+</style>
 </head>
 <body>
-	모든상품을 간단하게 표시
-	이름 가격 이미지 미리보기
-	클릭하면 상세정보페이지로이동 listdetail.jsp로 이동
-	
-			<h1>:::상품 목록:::</h1>
+			<h1>상품</h1>
 		<div class="product_list">
 			<c:forEach var="product" items="${ productlist }">
 				<div class="product_item">
-						<img src="resources/product_img/${ product.productimage_path }"	
-						alt="${product.productname}"
-						onclick="locaion.href='productdetail.do?product_id=${product.id}'">
-						<h2>상품 이름 : ${product.productname }</h2>
-						<p>상품 설명 : ${product.content }</p>
-						<p>상품 가격: ${prodcut.price }원</p>
-					</div>
-				</c:forEach>
+					<img src="resources/product_img/${product.productimage_path}"
+						alt="${product.productname}" width="300" height="300"
+						onclick="location.href='productdetail.do?productnum=${product.productnum}'">
+           		 	<h2>${product.productname}</h2>
+           		 	<p>${product.content}</p>
+            		<p>${product.price}원</p>
+				</div>
+			</c:forEach>
 		</div>
 </body>
 </html>

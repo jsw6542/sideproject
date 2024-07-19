@@ -22,7 +22,7 @@ SqlSession sqlSession;
 	
 	//상품삭제
 	public int delete(ProductVO vo) {
-		int delete = sqlSession.delete("p.delete",vo);
+		int delete = sqlSession.delete("p.product_delete",vo);
 		return delete;
 	}
 	
@@ -32,9 +32,15 @@ SqlSession sqlSession;
 		return list;
 	}
 	
+	//상품 상세페이지
+	public ProductVO selectdetail(int productnum) {
+		ProductVO product = sqlSession.selectOne("p.product_selectDetail",productnum);
+		return product;
+	}
+	
 	//상품수정
 	public int update(ProductVO vo) {
-		int update = sqlSession.update("p.update",vo);
+		int update = sqlSession.update("p.product_update",vo);
 		return update;
 	}
 	

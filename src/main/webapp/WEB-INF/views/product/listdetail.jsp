@@ -4,11 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품상세페이지</title>
 </head>
 <body>
-	선택한 개별상품의 상세정보표시
-	이름 가격 설명 이미지 재고 수량등의 정보 표시
-	장바구니에 추가 기능 제공
+    <div class="product_detail">
+        <img src="resources/product_img/${product.productimage_path}" alt="${product.productname}">
+        <div class="product_info">
+            <h2>${product.productname}</h2>
+            <p>${product.content}</p>
+            <p class="price">${product.price}원</p>
+            <p>재고 수량: ${product.productquantity}</p>
+            <form method="post" action="additemcart.do">
+                <input type="hidden" name="productnum" value="${product.productnum}">
+                <button type="submit" class="add_to_cart_button">장바구니에 담기</button>
+                바로구매버튼
+            </form>
+        </div>
+    </div>
+</body>
 </body>
 </html>

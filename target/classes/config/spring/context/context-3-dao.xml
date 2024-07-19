@@ -8,10 +8,6 @@
  	<bean id="memberBean" class="dao.MemberDAO">
 		<constructor-arg ref="sqlSession"/>
 	</bean>
-	
- 	 <!-- <bean id="board_daoBean" class="dao.BoardDAO">
-		<property name = "sqlSession" ref = "sqlSession"></property>
-	</bean> -->
 
  	<bean id="orderdetailBean" class="dao.OrderDetailDAO">
 		<constructor-arg ref="sqlSession"/>
@@ -28,5 +24,10 @@
 	<bean id="ordersBean" class="dao.OrdersDAO">
 		<constructor-arg ref="sqlSession"/>
 	</bean>
+	
+	<bean id="cartitemsBean" class="dao.CartitemsDAO">
+		<constructor-arg ref="sqlSession"/>
+	</bean>
+	
 
 </beans>

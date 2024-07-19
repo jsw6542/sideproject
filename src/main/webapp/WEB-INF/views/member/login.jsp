@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>작동되는지 테스트하는 페이지 main.jsp로 옮길예정</title>
 
 <script src="/project/resources/js/httpRequest.js"></script>
 		
 		<script>
 			function send(f) {
-				let id = f.id.value.trim();
+				let id = f.memberid.value.trim();
 				let pw = f.pwd.value.trim();
 				
 				if(id == ''){
@@ -35,35 +35,26 @@
 
 </head>
 <body>
-		<form action="login.do" method="post">
-			<table border="1">
-					<caption>로그인 페이지</caption>
-						<tr>
-							<td>아이디</td>
-							<td><input type="text" name="id"></td>
-						</tr>
-					
-						<tr>
-							<td>비밀번호</td>
-							<td><input type="password" name="pwd"></td>
-						</tr>
-						
-						<tr>
-							<td colspan="2">
-							<input type="button" value="로그인" onclick="send(this.form);">
-							<input type="button" value="홈으로" onclick="location.href='home.do'"><!-- home.do를 초기화면 url로 수정 -->
-							</td>
-						</tr>
-						
-						<tr>
-							<td colspan="2">
-								<input type = "button" value="아이디 찾기" onclick="location.href='selectid_form.do'">
-								<input type = "button" value="비밀번호 찾기" onclick="location.href='selectpw_form.do'">
-								<input type = "button" value="회원가입" onclick="location.href='join_form.do'">
-							</td>
-						</tr>
-			</table>
-			<p align="center" >${loginfail }</p>
-		</form>
+	<form action="login.do" method="post" class="form-container">
+        <h2>로그인 페이지</h2>
+        <div>
+            <label for="memberid">아이디</label>
+            <input type="text" id="memberid" name="memberid">
+        </div>
+        <div>
+            <label for="pwd">비밀번호</label>
+            <input type="password" id="pwd" name="pwd">
+        </div>
+        <div class="buttons">
+            <input type="button" value="로그인" onclick="send(this.form);">
+            <input type="button" value="홈으로" onclick="location.href='home.do'">
+        </div>
+        <div class="buttons">
+            <input type="button" value="아이디 찾기" onclick="location.href='selectid_form.do'">
+            <input type="button" value="비밀번호 찾기" onclick="location.href='selectpw_form.do'">
+            <input type="button" value="회원가입" onclick="location.href='join_form.do'">
+        </div>
+        <p class="message">${loginfail}</p>
+    </form>
 </body>
 </html>

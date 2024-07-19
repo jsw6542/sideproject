@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 </head>
 <body>
-
+	표시할정보
+	닉네임
+	주소
+	이메일
+	이름
 </body>
 </html>
