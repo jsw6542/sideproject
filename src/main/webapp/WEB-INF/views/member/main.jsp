@@ -21,6 +21,7 @@
 			<c:if test="${member != null }"> <!-- 로그인 -->
 				<c:if test="${member.id == 'admin' }">
 					<li>관리자페이지</li>
+					
 				</c:if>
 				<li>
 					마이페이지

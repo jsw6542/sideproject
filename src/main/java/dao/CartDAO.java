@@ -29,8 +29,8 @@ SqlSession sqlSession;
 	}
 	
 	//장바구니 생성
-	public int insert(CartVO vo) {
-		int insert = sqlSession.insert("c.cart_create", vo);
+	public int insert(CartVO cvo) {
+		int insert = sqlSession.insert("c.cart_create", cvo);
 		return insert;
 	}
 	

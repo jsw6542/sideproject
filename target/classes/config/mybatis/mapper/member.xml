@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 회원 탈퇴 -->
-	<delete id = "delete_id" parameterType="member">
+	<delete id = "member_deleteid" parameterType="member">
 		delete from MEMBER where memberid = #{memberid} and pwd = #{pwd}
 	</delete>
 	

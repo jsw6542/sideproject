@@ -32,6 +32,7 @@ public class MemberController {
 	}
 	
 	MemberDAO member_dao;
+	CartDAO cart_dao;
 	
 	
 	// 홈페이지,초기화면
@@ -107,11 +108,12 @@ public class MemberController {
 	
 	// 로그인 처리
 	@RequestMapping("/login.do")
-	public String login(MemberVO vo, HttpSession session) {
+	public String login(MemberVO vo, HttpSession session,CartVO cvo) {
 		MemberVO login = member_dao.login(vo);
 
 		if (login != null) {
 			session.setAttribute("login", login);
+			cart_dao.insert(cvo); //장바구니 추가
 				
 			return "redirect:home.do";
 		}
@@ -148,9 +150,13 @@ public class MemberController {
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,CartVO cvo) {
 		session.invalidate();
-
+		
+		//ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ로그아웃시 장바구니를 삭제하도록 추가해야함 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+		cart_dao.delete(cvo);
+		
+		
 		return "redirect:home.do";
 	}
 

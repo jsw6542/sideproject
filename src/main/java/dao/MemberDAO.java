@@ -46,7 +46,7 @@ SqlSession sqlSession;
 		
 	//회원 탈퇴
 	public int delete(MemberVO vo) {
-		int delete = sqlSession.delete("m.delete_id", vo);
+		int delete = sqlSession.delete("m.member_deleteid", vo);
 		return delete;
 	}
 		

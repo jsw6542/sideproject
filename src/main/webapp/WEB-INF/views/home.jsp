@@ -18,12 +18,13 @@
 	<!-- 로그인시 -->
 	<c:if test="${login != null }">
 		<a href="mypage.do">마이페이지</a>
+		<a href="logout.do">로그아웃</a>
 		<a href="orderinfo.do">주문정보</a><!-- 구현예정 -->
-		<a href="delete_form.do">회원탈퇴</a>
-		<a href="cartlist.do">장바구니</a> <!-- 장바구니를 장바구니가 있을때만(장바구니에 상품이 담겨있을때만) 보여지게 할까 생각중 -->
+		<a href="delete_form.do">회원탈퇴</a><!-- 마이페이지안에 넣기 -->
+		<a href="cartlist.do">장바구니</a> <!-- ★★★★★★상품을 장바구니에 넣을 때 장바구니 유무 확인 후 장바구니 생성 or 상품 추가★★★★★★ -->
 	</c:if>
 
-	<!-- 관리자 로그인시 관리자 페이지로 이동 -->
+	<!-- 관리자 로그인시 관리자 페이지로 이동 -->0
 	<c:if test="${login != null && login.memberid == 'admin' }">
 		<!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁ관리자 페이지 추가 예정 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ-->
 		<a href="productadd_form.do">상품추가페이지</a>

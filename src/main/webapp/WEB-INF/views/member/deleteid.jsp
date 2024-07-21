@@ -12,11 +12,17 @@
 			function send(f) {
 				
 				let id = f.memberid.value;
+				let id_chk f.idchk.value;
 				let pwd = f.pwd.value;
 				let pwd_chk = f.pwd_chk.value;
 				
+				if( id != id_chk ) {
+					alert("일치하는 회원 정보를 찾을 수 없습니다 !\n아이디나 비밀번호를 확인해주세요");
+					return;
+				}
+				
 				if( pwd != pwd_chk ) {
-					alert("비밀번호가 일치하지 않습니다");
+					alert("일치하는 회원 정보를 찾을 수 없습니다 !\n아이디나 비밀번호를 확인해주세요");
 					return;
 				}
 				
@@ -58,6 +64,9 @@
 			<caption>회원 탈퇴</caption>
 				
 				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="idchk"></td>
+				</tr>
 				<tr>
 					<td>비밀번호</td>
 					<td><input type="password" name="chk"></td>
