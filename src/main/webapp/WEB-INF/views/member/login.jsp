@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>작동되는지 테스트하는 페이지 main.jsp로 옮길예정</title>
+<title>로그인페이지</title>
 
 <script src="/project/resources/js/httpRequest.js"></script>
 		

@@ -4,10 +4,11 @@
 
 <html>
 <head>
-	<title>쇼핑몰 메인 화면</title>
+	<title>작동되는지 테스트페이지</title>
 </head>
 <body>
 <h1>
+	
 	안녕하세요   
 	환영합니다
 	<!--비로그인시-->

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CartDAO;
@@ -112,10 +113,13 @@ public class MemberController {
 		MemberVO login = member_dao.login(vo);
 
 		if (login != null) {
+			
 			session.setAttribute("login", login);
-			cart_dao.insert(cvo); //장바구니 추가
+			
+			member_dao.create(cvo); //장바구니 추가
 				
 			return "redirect:home.do";
+			
 		}
 		return "redirect:login_form.do?fail=o";
 	}
@@ -150,12 +154,12 @@ public class MemberController {
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session,CartVO cvo) {
+	public String logout(HttpSession session) {
+		 String memberid = (String) session.getAttribute("memberid");
+		 
+		member_dao.deletecart(memberid);
+				
 		session.invalidate();
-		
-		//ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ로그아웃시 장바구니를 삭제하도록 추가해야함 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-		cart_dao.delete(cvo);
-		
 		
 		return "redirect:home.do";
 	}
@@ -195,6 +199,8 @@ public class MemberController {
 		return "yes";
 			
 			
-	}	
+	}
+	
+	
 	
 }

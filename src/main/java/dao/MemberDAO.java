@@ -2,6 +2,7 @@ package dao;
 
 import org.apache.ibatis.session.SqlSession;
 
+import vo.CartVO;
 import vo.MemberVO;
 
 
@@ -24,6 +25,18 @@ SqlSession sqlSession;
 	public MemberVO login(MemberVO vo) {
 		MemberVO login = sqlSession.selectOne("m.member_login",vo);
 		return login;
+	}
+	
+	//장바구니 생성
+	public int create(CartVO cvo) {
+		int create = sqlSession.insert("c.cart_create", cvo);
+		return create;
+	}
+	
+	//장바구니 삭제(로그아웃시)
+	public int deletecart(String memberid) {
+		int delete = sqlSession.delete("c.cart_delete", memberid);
+		return delete;
 	}
 	
 	//아이디 찾기
