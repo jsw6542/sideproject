@@ -14,8 +14,14 @@
             <p>${product.content}</p>
             <p class="price">${product.price}원</p>
             <p>재고 수량: ${product.productquantity}</p>
-            <form method="post" action="additemcart.do">
+            
+            <form method="post" action="insertitems.do">
                 <input type="hidden" name="productnum" value="${product.productnum}">
+                
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                
+                <input type="number" name="productquantity" value="${product.productquantity }">
                 <button type="submit" class="add_to_cart_button">장바구니에 담기</button>
                 바로구매버튼
             </form>

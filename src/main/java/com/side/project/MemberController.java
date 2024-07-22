@@ -115,7 +115,7 @@ public class MemberController {
 		if (login != null) {
 			
 			session.setAttribute("login", login);
-			
+			session.setAttribute("memberid", login.getMemberid());
 			member_dao.create(cvo); //장바구니 추가
 				
 			return "redirect:home.do";
@@ -149,13 +149,15 @@ public class MemberController {
 	// 마이페이지 이동
 	@RequestMapping("/mypage.do")
 	public String mypage_form() {
-		return VIEW_PATH + "MyPage.jsp";
+		return VIEW_PATH + "mypage.jsp";
 	}
 
 	// 로그아웃
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
+		
 		 String memberid = (String) session.getAttribute("memberid");
+		 System.out.println(memberid);
 		 
 		member_dao.deletecart(memberid);
 				
@@ -184,7 +186,7 @@ public class MemberController {
 	// 회원탈퇴 페이지 이동
 	@RequestMapping("/delete_form.do")
 	public String delete_form() {
-		return VIEW_PATH + "DeleteId.jsp";
+		return VIEW_PATH + "deleteid.jsp";
 	}
 
 	// 회원탈퇴

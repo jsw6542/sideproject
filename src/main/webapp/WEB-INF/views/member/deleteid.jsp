@@ -69,7 +69,7 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="chk"></td>
+					<td><input type="password" name="chk_chk"></td>
 				</tr>
 				
 				<tr>
@@ -77,8 +77,6 @@
 					<input type = "button" value="탈퇴하기" onclick="send(this.form);">
 					</td>
 				</tr>
-				
-				
 		</table>
 	</form>
 </body>
