@@ -56,7 +56,13 @@ SqlSession sqlSession;
 		int update = sqlSession.update("m.member_modify", vo);
 		return update;
 	}
-		
+	
+	//장바구니번호 조회
+	public CartVO selectcartnum(String memberid) {
+		CartVO selectcartnum = sqlSession.selectOne("c.cart_selectCartByMemberId",memberid);
+		return selectcartnum;
+	}
+	
 	//회원 탈퇴
 	public int delete(MemberVO vo) {
 		int delete = sqlSession.delete("m.member_deleteid", vo);

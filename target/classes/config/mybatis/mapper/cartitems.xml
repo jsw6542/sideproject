@@ -4,8 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ci">
 
-	<!-- 장바구니 목록 확인 -->	
-	
+	<!-- 장바구니 상품 추가 -->	
+	<insert id="cartitems_insertitem" parameterType="cartitems">
+		insert into cartitems values(
+				cartitems_seq.nextVal,
+				#{cartnum},
+				#{productnum},
+				#{quantity}
+		)
+	</insert>
 </mapper>
 
 

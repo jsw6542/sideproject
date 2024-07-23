@@ -116,8 +116,21 @@ public class MemberController {
 			
 			session.setAttribute("login", login);
 			session.setAttribute("memberid", login.getMemberid());
-			member_dao.create(cvo); //장바구니 추가
-				
+			String memberid = login.getMemberid();
+			int newcart = member_dao.create(cvo); //장바구니 추가
+			System.out.println("추가완료 " + newcart);
+			
+			CartVO cart = member_dao.selectcartnum(memberid);
+			session.setAttribute("cart", cart);
+			
+			int cartnum = cart.getCartnum();
+			System.out.println(cartnum);
+			//System.out.println("장바구니 번호 : "+ cartnum);
+			// 추가한 장바구니의 번호(cartnum)을 불러와야함
+			/*
+			 * int cartnum = member_dao. session.setAttribute("cartnum", cartnum); //장바구니
+			 * 번호를 세션에 저장하려고함 System.out.println("장바구니 번호 : "+);
+			 */
 			return "redirect:home.do";
 			
 		}
@@ -125,6 +138,7 @@ public class MemberController {
 	}
 		
 	//아이디 중복검사
+	
 	@RequestMapping("/checkid.do")
 	@ResponseBody
 	public String checkid(MemberVO vo) {

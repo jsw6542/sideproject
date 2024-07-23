@@ -36,6 +36,16 @@ SqlSession sqlSession;
 		return product;
 	}
 	
-
+	//장바구니에 상품 추가
+	public int insertitem(CartitemsVO cartItem) {
+		int insertitem = sqlSession.insert("ci.cartitems_insertitem",cartItem);
+		return insertitem;
+	}
+	
+	//장바구니 조회
+//	public int selectcartnum(String memberid) {
+//		int selectcartnum = sqlSession.selectOne("c.cart_selectCartByMemberId",memberid);
+//		return selectcartnum;
+//	}
 
 }
