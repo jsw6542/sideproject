@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.CartitemsDAO;
+import vo.CartVO;
 import vo.CartitemsVO;
 
 @Controller
@@ -28,6 +29,18 @@ public class CartitemsController {
 	
 	CartitemsDAO cartitems_dao;
 	
-	
+	//장바구니 목록 가져오기
+	@RequestMapping("/selectcartitemslist")
+	public String selectcartitemslist(HttpSession session) {
+		//cartvo에 있는 memberid로 장바구니를 가져와서 productnum을 가져온다.
+		CartVO cart = (CartVO) session.getAttribute("cart");
+		int cartnum = cart.getCartnum();
+		
+		//productnum으로 상품 정보를 가져와서 표시
+		
+		
+		
+		return VIEW_PATH + "cartlist";
+	}
 	
 }

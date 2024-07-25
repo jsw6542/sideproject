@@ -13,6 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{quantity}
 		)
 	</insert>
+	
+	<!-- cartnum으로 장바구니 아이템 조회 -->
+	<select id="cartitems_selectcartitemslist" parameterType="cartitems">
+		select * from cartitems where cartnum = ${cartnum}
+	</select>
+	
+	
 </mapper>
 
 
