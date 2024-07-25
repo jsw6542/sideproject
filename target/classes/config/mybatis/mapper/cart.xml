@@ -22,10 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from cart where memberid = #{memberid}
 	</select>
 	
-	 <!-- 장바구니 아이템 조회 -->
-     <!-- <select id="cart_selectCartItemsByCartNum" parameterType="int" >
-        SELECT * FROM cartitems WHERE cartnum = #{cartnum}
-    </select>  -->
     
    
 </mapper>

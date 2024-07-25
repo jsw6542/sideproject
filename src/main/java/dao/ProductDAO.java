@@ -49,4 +49,11 @@ SqlSession sqlSession;
 		int res = sqlSession.update("p.productmodify_image", vo);
 		return res;
 	}
+	
+	
+	//장바구니 상품 리스트 가져오기
+	public ProductVO selectbyid(int productnum) {
+		ProductVO product = sqlSession.selectOne("p.product_selectbyid",productnum);
+		return product;
+	}
 }
