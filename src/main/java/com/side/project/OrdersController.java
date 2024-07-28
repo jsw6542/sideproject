@@ -22,4 +22,7 @@ public class OrdersController {
 	}
 	
 	OrdersDAO orders_dao;
+	
+	//결제기능 구현 페이지 이동
+	
 }
