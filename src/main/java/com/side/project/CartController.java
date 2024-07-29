@@ -49,7 +49,7 @@ public class CartController {
 		cartItem.setProductnum(productnum);
 		System.out.println("상품번호 : "+productnum);
 		cartItem.setQuantity(quantity);
-		System.out.println("수량 : "+quantity);
+		System.out.println("수량 : "+ quantity);
 		
 		cart_dao.insertitem(cartItem);
 		

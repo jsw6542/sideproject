@@ -55,8 +55,8 @@ public class CartitemsController {
             products.add(product);
         }
 		
-		model.addAttribute("cartitems", cartitems);
-		model.addAttribute("cartproducts", products);
+		model.addAttribute("cartitems", cartitems);//카트에 담긴 상품번호
+		model.addAttribute("cartproducts", products);//상품번호로 상품조회
 		
 		return VIEW_PATH + "cartview.jsp";
 	}
