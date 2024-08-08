@@ -14,12 +14,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<!-- cartnum으로 장바구니 상품의 번호 조회  상품 번호로 상품 정보를 가져와야함-->
-	<select id="cartitems_selectcartitemslist" parameterType="cartitems">
-		select * from cartitems where cartnum = ${cartnum}
-	</select>
 	
+    
+	<!-- 장바구니 조회 -->
+	<!-- <select id ="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
+	select * from cartitems where cartnum = #{cartnum} 
+	</select> -->
 	
+	<select id ="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
+	SELECT ci.*, p.PRODUCTNAME, p.PRICE
+        FROM cartitems ci
+        JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
+        WHERE ci.CARTNUM = #{cartnum}
+    </select>
 </mapper>
 
 

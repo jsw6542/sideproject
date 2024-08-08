@@ -22,7 +22,7 @@
 		<a href="logout.do">로그아웃</a>
 		<a href="orderinfo.do">주문정보</a><!-- 구현예정 -->
 		<a href="delete_form.do">회원탈퇴</a><!-- 마이페이지안에 넣기 -->
-		<a href="cartlist.do">장바구니</a> <!-- ★★★★★★상품을 장바구니에 넣을 때 장바구니 유무 확인 후 장바구니 생성 or 상품 추가★★★★★★ -->
+		<a href="cartlistview.do">장바구니</a> <!-- ★★★★★★상품을 장바구니에 넣을 때 장바구니 유무 확인 후 장바구니 생성 or 상품 추가★★★★★★ -->
 	</c:if>
 
 	<!-- 관리자 로그인시 관리자 페이지로 이동 -->0
@@ -37,7 +37,7 @@
 	<a href="productlist.do">상품 리스트 페이지 이동</a>
 	<a href="productdetail_form.do">상품 상세 설명 페이지이동</a>
 	
-	
+	<a href="payment.do">결제 페이지 이동</a>
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

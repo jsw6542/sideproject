@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.CartDAO;
+import dao.CartitemsDAO;
 import vo.CartitemsVO;
 import vo.CartVO;
 import vo.ProductVO;
@@ -36,6 +37,7 @@ public class CartController {
 	}
 	 
 	CartDAO cart_dao;
+	CartitemsDAO cartitems_dao;
 	
 	//장바구니에 아이템 넣기
 	@RequestMapping("/insertitems.do")
@@ -56,14 +58,8 @@ public class CartController {
 		return "redirect:/home.do"; //새로고침 없이 적용하기
 	}
 	
-	//장바구니 페이지
-	/*
-	 * @RequestMapping("/cartview.do") public String cartView(Model model,
-	 * HttpServletRequest request) { String memberid = (String)
-	 * request.getSession().getAttribute("login");
-	 * 
-	 * }
-	 */
+	
+	 
 
 	
 }

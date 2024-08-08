@@ -19,7 +19,7 @@ import vo.MemberVO;
 
 @Controller
 public class MemberController {
-
+	
 	@Autowired
 	HttpServletRequest request;
 
@@ -54,6 +54,8 @@ public class MemberController {
 	public String joinId(MemberVO vo) {
 		member_dao.join(vo);
 		request.setAttribute("vo", vo);
+		
+		
 		
 		return "redirect:home.do";
 	}
@@ -125,6 +127,7 @@ public class MemberController {
 			
 			int cartnum = cart.getCartnum();
 			System.out.println(cartnum);
+
 			//System.out.println("장바구니 번호 : "+ cartnum);
 			// 추가한 장바구니의 번호(cartnum)을 불러와야함
 			/*

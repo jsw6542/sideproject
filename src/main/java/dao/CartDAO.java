@@ -24,11 +24,6 @@ SqlSession sqlSession;
 		return cartitems;
 	}
 	
-	// 장바구니 아이템 조회
-    public List<CartitemsVO> selectCartItems(int cartnum) {
-        return sqlSession.selectList("cart.selectCartItemsByCartNum", cartnum);
-    }
-	
 	
 	//상품정보 조회
 	public ProductVO selectdetail(int productnum) {

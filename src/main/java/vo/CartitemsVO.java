@@ -3,6 +3,25 @@ package vo;
 public class CartitemsVO {
 
 	private int cartitem_num,cartnum,productnum,quantity;
+	private String productname;
+	private int price;
+
+
+	public String getProductname() {
+		return productname;
+	}
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 	public int getCartitem_num() {
 		return cartitem_num;
