@@ -27,6 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
         WHERE ci.CARTNUM = #{cartnum}
     </select>
+    
+    <!-- 현재 장바구니에 있는 상품 개수 조회 -->
+    <select id="cartitems_itemsize" parameterType="int" resultType="int">
+    	SELECT COUNT(*) AS item_countFROM cartitems WHERE cartnum = #{cartnum}
+    </select>
 </mapper>
 
 

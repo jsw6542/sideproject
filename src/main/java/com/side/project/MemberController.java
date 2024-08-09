@@ -2,20 +2,24 @@ package com.side.project;
 
 
 
+
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CartDAO;
 import dao.MemberDAO;
 import vo.CartVO;
 import vo.MemberVO;
+
 
 @Controller
 public class MemberController {
@@ -36,11 +40,6 @@ public class MemberController {
 	CartDAO cart_dao;
 	
 	
-	// 홈페이지,초기화면
-	@RequestMapping(value = { "/", "/home.do" })
-	public String homePage() {
-		return "/WEB-INF/views/home.jsp";
-	}
 	
 	
 	// 회원가입 페이지

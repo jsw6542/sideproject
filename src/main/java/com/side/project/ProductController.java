@@ -34,6 +34,15 @@ public class ProductController {
 		this.product_dao = product_dao;
 	}
 	
+	// 홈페이지,초기화면
+	@RequestMapping(value = { "/", "/home.do" })
+	public String homePage(Model model,ProductVO vo) {
+		List<ProductVO> recentlist = product_dao.selectrecentproduct(vo);
+		model.addAttribute("recentlist", recentlist);
+			
+		return "/WEB-INF/views/home.jsp";
+	}
+	
 	
 	// 상품추가페이지 이동
 	@RequestMapping("/productadd_form.do")

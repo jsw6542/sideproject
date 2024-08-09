@@ -73,13 +73,14 @@
                 
                 
                 
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+                    <!-- Cart Button -->
+                	<form class="d-flex">
+                    	<button id="cartButton" class="btn btn-outline-dark" type="button">
+                        	<i class="bi-cart-fill me-1"></i>
+                        	Cart
+                        	<span id="cartBadge" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    	</button>
+                	</form>
                 </div>
             </div>
         </nav>
@@ -97,6 +98,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS -->
     <script src="js/scripts.js"></script>
+    
+     <!-- Custom JS for Cart Button -->
+    
 </body>
 </html>
 

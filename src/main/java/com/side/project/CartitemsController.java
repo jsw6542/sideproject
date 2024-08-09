@@ -43,7 +43,9 @@ public class CartitemsController {
 		CartVO cart = (CartVO) session.getAttribute("cart");
 		int cartnum = cart.getCartnum();
 		System.out.println("장바구니 목록 가져오기 cartnum = "+cartnum);
-					
+		
+			
+		
 		//cartitems에 있는 cartnum으로 장바구니에 담은 상품번호 가져오기
 		//productnum으로 상품 정보를 가져와서 표시
 		List<CartitemsVO> cartitems = cartitems_dao.selectcartitems(cartnum); 

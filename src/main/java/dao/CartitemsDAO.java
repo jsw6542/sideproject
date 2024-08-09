@@ -21,5 +21,11 @@ public class CartitemsDAO {
 		return list;
 	}
 	
+	//장바구니에 있는 현재 상품 수
+	public int itemsize(int cartnum) {
+		int size = sqlSession.selectOne("ci.cartitems_itemsize",cartnum);
+		return size;
+	}
+	
     
 }

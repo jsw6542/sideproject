@@ -14,6 +14,12 @@ SqlSession sqlSession;
 		this.sqlSession = sqlSession;
 	}
 	
+	//메인페이지 최근 상품 8개 불러오기
+	public List<ProductVO> selectrecentproduct(ProductVO vo) {
+		List<ProductVO> list = sqlSession.selectList("p.product_selectrecent",vo);
+		return list;
+	}
+	
 	//상품추가
 	public int insert(ProductVO vo) {
 		int insert = sqlSession.insert("p.product_insert", vo);
