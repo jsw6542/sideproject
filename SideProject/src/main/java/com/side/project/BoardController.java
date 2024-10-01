@@ -34,7 +34,7 @@ public class BoardController {
 		this.board_dao = board_dao;
 	}
 	
-	//게시판 글 전체 조회   페이징 처리 해야함ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ
+	//게시판 글 전체 조회   페이징 처리 해야함
 	@RequestMapping("/boardlist.do")
 	public String boardlist(BoardVOtwo vo,Model model) {
 		List<BoardVO> boardlist = board_dao.selectList(vo);
