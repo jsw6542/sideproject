@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ci">
+
+	<!-- 장바구니 상품 추가 -->	
+	<insert id="cartitems_insertitem" parameterType="cartitems">
+		insert into cartitems values(
+				cartitems_seq.nextVal,
+				#{cartnum},
+				#{productnum},
+				#{quantity}
+		)
+	</insert>
+	
+	
+    
+	<!-- 장바구니 조회 -->
+	<!-- <select id ="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
+	select * from cartitems where cartnum = #{cartnum} 
+	</select> -->
+	
+	<select id ="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
+	SELECT ci.*, p.PRODUCTNAME, p.PRICE
+        FROM cartitems ci
+        JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
+        WHERE ci.CARTNUM = #{cartnum}
+    </select>
+    
+    <!-- 현재 장바구니에 있는 상품 개수 조회 -->
+    <select id="cartitems_itemsize" parameterType="int" resultType="int">
+    	SELECT COUNT(*) AS item_countFROM cartitems WHERE cartnum = #{cartnum}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	
+	<!-- 글 등록 -->
+	<insert id="board_insert" parameterType="board" >
+		insert into board values(
+				seq_board_table.NextVal,
+				#{memberid},
+				COALESCE(#{boardimage_path, jdbcType=VARCHAR}, 'no_file'), <!-- NULL인 경우 'no_file'로 설정 -->
+				0,
+				#{title},
+				#{content},
+				0,
+				0,
+				0,
+				'N',				<!-- 삭제여부 확인 오류나면 여기 확인 null값 입력하면 N으로 설정되게 함 -->
+				CURRENT_TIMESTAMP, <!-- 생성시간 -->
+				CURRENT_TIMESTAMP, <!-- 수정시간 -->
+				COALESCE(#{productname, jdbcType=VARCHAR}, NULL),
+				#{board_type}
+		)
+	</insert>
+    
+   <!-- 전체 게시글 조회 페이징처리 -->
+   <select id="board_list" parameterType="board" resultType="board"> <!-- 오류발생시 resulttype변경 -->
+   		select * from (
+    		select 1 as sort_order, b.*
+    		from board b
+    		where b.board_type = 'notice'
+    		and b.del_info = 'N'
+    		
+    		union all
+    		
+    		select 2 as sort_order, b.*
+    		from board b
+    		where b.board_type != 'notice'
+    		and b.del_info = 'N'
+    		
+		) ordered_board
+		order by sort_order, board_created_at desc
+   </select>
+    
+   <!-- 글 삭제 글 삭제처럼 보이게 함 실제로는 삭제 안됨 -->
+	<update id = "board_delete" parameterType="board">
+		update board set del_info = -1 where boardidx = #{idx} <!-- 오류발생시#{boardidx} -->
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
