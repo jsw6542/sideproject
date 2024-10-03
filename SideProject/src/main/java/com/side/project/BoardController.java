@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDAO;
@@ -127,9 +128,9 @@ public class BoardController {
 	
 	
 	//게시판의 상세페이지 조회
-	@RequestMapping("/detail.do")
-	public String view(int idx, Model model) {
-		BoardVO vo = board_dao.selectdetail(idx);
+	@RequestMapping("/boarddetail.do")
+	public String view(@RequestParam("boardidx") int boardidx, Model model) {
+		BoardVO vo = board_dao.selectdetail(boardidx);
 		List<BoardVO> list = board_dao.selectReply(vo.getRef());
 		model.addAttribute("vo",vo);
 		model.addAttribute("list",list);
@@ -138,12 +139,15 @@ public class BoardController {
 	HttpSession session = request.getSession();
 	String show = (String)session.getAttribute("show"); 		
 		if(show == null) {
-		int res = board_dao.update_readhit(idx);
+		int res = board_dao.update_readhit(boardidx);
 		session.setAttribute("show", "1");
 		}
 		//request.setAttribute("vo", vo);
 			
 		return VIEW_PATH + "detail.jsp";
 	}
+	
+	//댓글 쓰기
+	
 	
 }

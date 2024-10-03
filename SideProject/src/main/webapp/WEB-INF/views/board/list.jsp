@@ -30,7 +30,7 @@
         <c:forEach var="board" items="${boardlist}">
             <li class="post-item">
                 <div class="post-title">
-                    <a href="view.do?boardidx=${board.boardidx}">${board.title}</a>
+                    <a href="boarddetail.do?boardidx=${board.boardidx}">${board.title}</a>
                 </div>
                 <div>작성자: ${board.memberid}</div>
                 <div>작성일: ${board.board_created_at}</div>

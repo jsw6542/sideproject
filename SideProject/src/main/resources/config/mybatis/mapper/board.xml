@@ -42,6 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) ordered_board
 		order by sort_order, board_created_at desc
    </select>
+   
+   <!-- 게시글 상세조회 -->
+   <select id="">
+   
+   </select>
     
    <!-- 글 삭제 글 삭제처럼 보이게 함 실제로는 삭제 안됨 -->
 	<update id = "board_delete" parameterType="board">
