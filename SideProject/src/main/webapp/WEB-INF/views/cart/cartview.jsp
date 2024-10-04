@@ -67,7 +67,9 @@
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
     <div class="cart-container">
         <h1>장바구니</h1>
-
+		
+		<c:set var="totalprice" value="0" /> <!-- 총 가격을 저장할 변수 0으로 설정 -->
+		
         <c:forEach var="item" items="${cartitems}">
             <div class="cart-item">
                 <div>상품 번호 : ${item.productnum}</div>
@@ -77,7 +79,14 @@
                 <div>합계 : ${item.price * item.quantity}원</div>
             </div>
             
+            <c:set var="totalprice" value="${totalprice + (item.price * item.quantity) }" />
+            
         </c:forEach>
+        	
+        	<div class="cart-total">
+            	<strong>총가격 : ${totalprice }원</strong>
+            </div>
+            
 	<button onclick="requestPay()">결제하기</button><!-- 결제하기 버튼 -->
     </div>
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>    

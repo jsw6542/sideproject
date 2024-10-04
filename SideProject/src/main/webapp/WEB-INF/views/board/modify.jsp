@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,40 +20,41 @@
 		} 
 	</script>
 <body>
-<form>
-        <input type="hidden" name="boardidx" value="${vo.boardidx }">
-        
-        <h2>글 수정하기</h2>
-
-        <!-- 아이디 -->
-        <div>
-            <label>아이디</label>
-            <div>${vo.memberid }</div>
-        </div>
-
-        <!-- 글종류 -->
-        <div>
-            <label>글종류</label>
-            <div>${vo.board_type }</div>
-        </div>
-
-        <!-- 제목 -->
-        <div>
-            <label for="title">제목</label>
-            <input type="text" name="title" id="title" value="${vo.title }">
-        </div>
-
-        <!-- 내용 -->
-        <div>
-            <label for="content">내용</label>
-            <textarea name="content" id="content">${vo.content }</textarea>
-        </div>
-
-        <!-- 수정/삭제 버튼 -->
-        <div>
-            <input type="button" value="수정" onclick="modify(this.form)">
-            <input type="button" value="삭제" onclick="del(this.form)">
-        </div>
-    </form>
+	<form action="boardmodify.do" method="post">
+	    <input type="hidden" name="boardidx" value="${vo.boardidx}"> <!-- 글 고유 번호 -->
+	
+	    <div>
+	        <label>제목</label>
+	        <input type="text" name="title" value="${vo.title}"><!-- required 입력 필드 비우기 불가능 -->
+	    </div>
+	
+	    <div>
+	        <label>닉네임</label>
+	        <input type="text" name="memberid" value="${vo.memberid}"><!-- readonly 읽기전용 수정x -->
+	    </div>
+	
+	    <div>
+	        <label>등록일</label>
+	        <input type="text" name="created_at" value="${vo.board_created_at}">
+	    </div>
+	
+	    <div>
+	        <label>내용</label>
+	        <textarea name="content" required>${vo.content}</textarea>
+	        <c:if test="${vo.boardimage != 'no_file'}">
+	            <img src="resources/board_img/${vo.boardimage}" width="300">
+	        </c:if>
+	    </div>
+	
+	    <div>
+	        <label>조회수</label>
+	        <input type="text" name="readhit" value="${vo.readhit}" readonly>
+	    </div>
+	
+	    <div>
+	        <input type="submit" value="수정 완료">
+	        <input type="button" value="취소" onclick="location.href='boardlist.do'">
+	    </div>
+	</form>
 </body>
 </html>

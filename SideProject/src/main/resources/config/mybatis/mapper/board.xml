@@ -44,10 +44,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <!-- 게시글 상세조회 -->
-   <select id="">
-   
+   <select id="board_detail" parameterType="int" resultType="board">
+   		select * from board where boardidx = #{boardidx}
    </select>
-    
+   
+   <!-- 게시글 댓글 조회 -->
+   <select id="board_replylist" parameterType="int" resultType="board">
+   		select * from board where ref = #{ref} and step != 0
+   </select> 
+   
+   <!-- 조회수 증가 -->
+   <update id="board_readhit" parameterType="int">
+   		update board set readhit = readhit +1
+		where boardidx = #{readhit}
+   </update>
+   
+   <!-- 게시글 수정 -->
+   <update id="board_modify" parameterType="board">
+		update board set title=#{title}, content=#{content} where boardidx = #{boardidx}
+	</update>
+     
    <!-- 글 삭제 글 삭제처럼 보이게 함 실제로는 삭제 안됨 -->
 	<update id = "board_delete" parameterType="board">
 		update board set del_info = -1 where boardidx = #{idx} <!-- 오류발생시#{boardidx} -->

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,19 +26,30 @@
 </head>
 <body>
 	<h1>게시판 목록</h1>
-
+	
+	<!-- 게시판 헤더 -->
+	<div class="post-header">
+        <div style="display: inline-block; width: 50px; text-align: center;">번호</div>
+        <div style="display: inline-block; width: 300px; text-align: center;">제목</div>
+        <div style="display: inline-block; width: 150px; text-align: center;">작성일</div>
+        <div style="display: inline-block; width: 100px; text-align: center;">작성자</div>
+        <div style="display: inline-block; width: 100px; text-align: center;">조회수</div>
+    </div>
+	
+	
     <ul class="post-list">
         <c:forEach var="board" items="${boardlist}">
-            <li class="post-item">
-                <div class="post-title">
+            <li class="post-item" style="display: flex; padding: 5px; border-bottom: 1px solid #ccc;">
+                <div style="flex: 0 0 50px; text-align: center;">${board.boardidx}</div>
+                <div style="flex: 0 0 300px; text-align: center;">
                     <a href="boarddetail.do?boardidx=${board.boardidx}">${board.title}</a>
                 </div>
-                <div>작성자: ${board.memberid}</div>
-                <div>작성일: ${board.board_created_at}</div>
-                <div>조회수: ${board.readhit}</div>
+                <div style="flex: 0 0 150px; text-align: center;">${board.board_created_at}</div>
+                <div style="flex: 0 0 100px; text-align: center;">${board.memberid}</div>
+                <div style="flex: 0 0 100px; text-align: center;">${board.readhit}</div>
             </li>
         </c:forEach>
-    </ul>	
+    </ul> 	
     <div>
         <c:if test="${not empty pageMenu}">
             ${pageMenu}

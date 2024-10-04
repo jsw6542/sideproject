@@ -100,15 +100,19 @@ public class BoardController {
 	
 	//게시판 수정 페이지
 	@RequestMapping("/boardmodify_form.do")
-	public String modify_form() {
+	public String modify_form(@RequestParam("boardidx") int boardidx, Model model) {
+		BoardVO vo = board_dao.selectdetail(boardidx);
+		model.addAttribute("vo", vo);
+		
 		return VIEW_PATH + "modify.jsp";
 	}
 	
 	//게시판 수정
 	@RequestMapping("/boardmodify.do")
 	public String modify(int idx) {
-		int update = board_dao.update(idx);
-		if(update == 0) {
+		
+		int modify = board_dao.modify(idx);
+		if(modify == 0) {
 			return "no";
 		}
 		return VIEW_PATH + "list.jsp";
@@ -131,15 +135,16 @@ public class BoardController {
 	@RequestMapping("/boarddetail.do")
 	public String view(@RequestParam("boardidx") int boardidx, Model model) {
 		BoardVO vo = board_dao.selectdetail(boardidx);
+
 		List<BoardVO> list = board_dao.selectReply(vo.getRef());
 		model.addAttribute("vo",vo);
 		model.addAttribute("list",list);
 		
-	//조회수 증가
+	//상세페이지 클릭 시 조회수 증가
 	HttpSession session = request.getSession();
 	String show = (String)session.getAttribute("show"); 		
 		if(show == null) {
-		int res = board_dao.update_readhit(boardidx);
+		int res = board_dao.readhit(boardidx);
 		session.setAttribute("show", "1");
 		}
 		//request.setAttribute("vo", vo);

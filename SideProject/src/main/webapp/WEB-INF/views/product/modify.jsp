@@ -7,6 +7,8 @@
 <title>상품 정보 수정</title>
 </head>
 <body>
+
+
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>

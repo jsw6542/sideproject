@@ -24,7 +24,7 @@ public class BoardDAO {
 	
 	//게시글 상세조회
 	public BoardVO selectdetail(int idx) {
-		BoardVO vo=sqlSession.selectOne("b.board_selectdetail",idx);
+		BoardVO vo = sqlSession.selectOne("b.board_detail",idx);
 		return vo;
 	}
 	
@@ -40,8 +40,8 @@ public class BoardDAO {
 	 */
 		
 	//조회수 증가
-	public int update_readhit(int idx) {
-		int res = sqlSession.update("b.board_update_readhit",idx);
+	public int readhit(int idx) {
+		int res = sqlSession.update("b.board_readhit",idx);
 		return res;
 	}
 	
@@ -58,8 +58,8 @@ public class BoardDAO {
 	}
 	
 	//게시글 수정
-	public int update(int idx) {
-		int update = sqlSession.delete("b.board_update", idx);
-		return update;
+	public int modify(int idx) {
+		int modify = sqlSession.delete("b.board_modify", idx);
+		return modify;
 	}
 }

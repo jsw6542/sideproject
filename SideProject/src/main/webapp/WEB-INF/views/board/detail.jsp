@@ -8,21 +8,21 @@
 <title>게시글 상세페이지에서 댓글을 달 수 있게 함. 비밀글로 문의 게시판까지 통합되게 함</title>
 </head>
 <body>
-<div >
+<div>
     <div>제목</div>
     <div>${vo.title}</div>
     
     <div>닉네임</div>
-    <div>${vo.user_id}</div>
+    <div>${vo.memberid}</div>
 
     <div>등록일</div>
-    <div>${vo.regdate}</div>
+    <div>${vo.board_created_at}</div>
 
     <div>내용</div>
     <div>
         ${vo.content}
         <c:if test="${vo.boardimage != 'no_file'}">
-            <img src="resources/upload/${vo.boardimage }" width="300">
+            <img src="resources/board_img/${vo.boardimage }" width="300">
         </c:if>
     </div>
 
@@ -34,14 +34,14 @@
             <input type="button" value="댓글쓰기"
                    onclick="location.href='reply_form.do?idx=${vo.boardidx}'">
         </c:if>
-        <%-- <c:if test="${vo.user_id == login.user_nickname}"> --%>
-        <c:if test="${vo.nickname == login.nickname}"> <!-- 글작성자일경우 수정,삭제권한 -->
+        <%-- <c:if test="${vo.memberid == login.nickname}"> --%>
+        <c:if test="${vo.memberid == login.nickname}"> <!-- 글작성자일경우 수정,삭제권한 -->
             <input type="button" value="수정"
-                   onclick="location.href='edit_form.do?idx=${vo.boardidx}'">
+                   onclick="location.href='boardmodify_form.do?boardidx=${vo.boardidx}'">
             <input type="button" value="삭제"
-                   onclick="location.href='del.do?boardidx=${vo.boardidx}'">
+                   onclick="location.href='delete.do?boardidx=${vo.boardidx}'">
         </c:if>
-        <input type="button" value="목록" onclick="location.href='list.do'">
+        <input type="button" value="목록" onclick="location.href='boardlist.do'">
     </div>
 </div>
 

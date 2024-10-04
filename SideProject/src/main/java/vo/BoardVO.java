@@ -6,9 +6,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	private int boardidx,readhit,ref,step,depth;
-	private String memberid,boardimage_path,title,content,del_info,productname,board_type;
+	private String memberid,boardimage_path,title,content,del_info,productname,board_type,nickname;
 	private Timestamp board_created_at,board_updated_at;
 	
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	public Timestamp getBoard_created_at() {
 		return board_created_at;
