@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CartDAO;
 import dao.CartitemsDAO;
@@ -58,8 +60,17 @@ public class CartController {
 		return "redirect:/home.do"; //새로고침 없이 적용하기
 	}
 	
-	
-	 
-
+	//장바구니에 상품이 있는지 확인
+	@RequestMapping("/checkcart.do")
+	@ResponseBody
+	public String checkcart(@RequestParam String memberid) {
+		int checkcart = cart_dao.checkcart(memberid);
+		
+		if(checkcart == 0) {
+			return "no";
+		} else {
+			return "yes";
+		}
+	}
 	
 }

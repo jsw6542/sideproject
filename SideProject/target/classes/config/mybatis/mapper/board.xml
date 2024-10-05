@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      
    <!-- 글 삭제 글 삭제처럼 보이게 함 실제로는 삭제 안됨 -->
 	<update id = "board_delete" parameterType="board">
-		update board set del_info = -1 where boardidx = #{idx} <!-- 오류발생시#{boardidx} -->
+		update board set del_info = 'Y' where boardidx = #{idx} <!-- 오류발생시#{boardidx} -->
 	</update>
 </mapper>
 

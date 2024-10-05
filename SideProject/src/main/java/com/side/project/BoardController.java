@@ -120,7 +120,7 @@ public class BoardController {
 	
 	//게시판 삭제
 	@RequestMapping("/boarddelete.do")
-	public String board_delete(int idx) {
+	public String boarddelete(int idx) {
 		int del = board_dao.delete(idx);
 		
 		if(del == 1 ) {

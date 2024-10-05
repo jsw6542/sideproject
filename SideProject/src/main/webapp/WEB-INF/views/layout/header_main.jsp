@@ -6,6 +6,75 @@
 <head>
 <meta charset="UTF-8">
 <title>아르카나 메인 페이지</title>
+<script src="/sideproject/resources/js/httpRequest.js"></script>
+<script>
+			function checkcart(f) {
+				
+				let memberid = f.memberid.value;
+
+				
+				if( memberid == '') {
+					alert("회원 ID가 없습니다. 다시 로그인하세요.");
+					return;
+				}
+				
+				let url= "checkcart.do";
+				let param = "memberid="+memberid
+				
+				sendRequest(url, param, resultFn, "post");
+				
+			}
+			
+			function resultFn() {
+				if(xhr.readyState == 4 & xhr.status == 200) {
+					
+					let data = xhr.responseText;
+					
+					if(data == 'no') {
+						alert("장바구니가 비었습니다");
+						return;
+					}else {
+						/* location.href = 'cartlistview.do'; */
+					}
+					
+
+				}
+			}
+		</script>
+<!-- <script>
+
+function checkcart(f) {
+
+    let memberid = f.memberid.value.trim();
+
+    if (memberid == '') {
+        alert("회원 ID가 없습니다. 다시 로그인하세요.");
+        return;
+    }
+
+    let url = "checkcart.do";
+    let param = "memberid="+memberid
+alert("콜백메서드 호출");	
+    sendRequest(url, param, resultFn, "post");
+alert("콜백메서드 호출1");    
+}
+
+function resultFn() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+alert("콜백메서드 호출4");
+        let data = xhr.responseText;
+        if (data == 'empty') {
+            alert("장바구니가 비었습니다");
+            return;
+        } else{
+        	location.href = 'cartlistview.do';
+        }
+
+        // 장바구니에 상품이 있으면 페이지 이동
+        
+    }
+}
+</script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -19,7 +88,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="home.do">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="productlist.do">전체상품</a></li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#!">All Products</a></li>
@@ -27,7 +96,7 @@
                                 <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                     
                     
@@ -81,17 +150,14 @@
                             </li>
 
                 </ul>
-                
-                
-                
                     <!-- Cart Button -->
-                	<form class="d-flex">
-                    	<button id="cartButton" class="btn btn-outline-dark" type="button">
-                        	<i class="bi-cart-fill me-1"></i>
-                        	Cart
-                        	<span id="cartBadge" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    	</button>
-                	</form>
+                <form class="d-flex" onsubmit="return false;"> <!-- 기본 제출 방지 -->
+				    <input type="hidden" id="memberIdInput" name="memberid" value="${login.memberid}">
+				    <button id="cartButton" class="btn btn-outline-dark" type="button" onclick="checkcart(this.form);">
+				        <i class="bi-cart-fill me-1"></i>
+				        Cart
+				    </button>
+				</form>
                 </div>
             </div>
         </nav>
