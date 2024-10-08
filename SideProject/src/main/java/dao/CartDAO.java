@@ -37,10 +37,13 @@ SqlSession sqlSession;
 		return insertitem;
 	}
 	
-	//장바구니에 상품이 있는지 확인
-	public int checkcart(String memberid) {
-		int checkcart = sqlSession.selectOne("c.cart_checkcart", memberid);
-		
-		return checkcart;
-	}
+	
+	
+	
+	/*
+	 * //장바구니에 상품이 있는지 확인 public int checkcart(String memberid) { int checkcart =
+	 * sqlSession.selectOne("c.cart_checkcart", memberid);
+	 * 
+	 * return checkcart; }
+	 */
 }

@@ -229,6 +229,7 @@
 
             <div class="form-group">
                 <label for="email1">이메일</label>
+                
                 <input class="box" id="domain-txt" name="email1" size="15">
                 @
                 <input class="box" id="direct-input" name="direct_input" style="display: none;" placeholder="도메인 직접 입력" size="15">

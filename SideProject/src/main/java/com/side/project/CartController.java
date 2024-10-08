@@ -61,8 +61,8 @@ public class CartController {
 	}
 	
 	//장바구니에 상품이 있는지 확인
-	@RequestMapping("/checkcart.do")
-	@ResponseBody
+	//@RequestMapping("/checkcart.do")
+	/*@ResponseBody
 	public String checkcart(@RequestParam String memberid) {
 		int checkcart = cart_dao.checkcart(memberid);
 		
@@ -71,6 +71,6 @@ public class CartController {
 		} else {
 			return "yes";
 		}
-	}
+	}*/
 	
 }

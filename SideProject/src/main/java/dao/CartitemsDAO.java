@@ -27,5 +27,8 @@ public class CartitemsDAO {
 		return size;
 	}
 	
-    
+	//주문정보 조회
+	public List<CartitemsVO> getCartItemsByOrderNum(String ordernum) {
+        return sqlSession.selectList("CartItemsMapper.getCartItemsByOrderNum", ordernum);
+    }
 }

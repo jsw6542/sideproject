@@ -4,7 +4,15 @@ package vo;
 public class MemberVO {
 
 	private String pwd,zip_code,address1,address2,address3,regdate,nickname,email1,email2;//id,name,제거
-	private String memberid,membername;
+	private String memberid,membername,member_phone;
+
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
 
 	public String getEmail1() {
 		return email1;
