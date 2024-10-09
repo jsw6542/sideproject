@@ -89,6 +89,7 @@
 		
 		<c:if test="${emptyCart == true }">
 			<p>장바구니가 비어 있습니다.</p>
+			홈으로 돌아가기 버튼 만들기
 		</c:if>
 		
 		<c:if test="${emptyCart != true }">
