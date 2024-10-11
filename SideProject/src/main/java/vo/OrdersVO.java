@@ -1,31 +1,31 @@
 package vo;
 
+import java.util.Date;
+
 public class OrdersVO {
-	private int cartnum,productnum,quantity;
-	private String id;
+	private int ordernum;
+	private String memberid;
+	private Date sysdate;
 	
-	public int getCartnum() {
-		return cartnum;
+	
+	public int getOrdernum() {
+		return ordernum;
 	}
-	public void setCartnum(int cartnum) {
-		this.cartnum = cartnum;
+	public void setOrdernum(int ordernum) {
+		this.ordernum = ordernum;
 	}
-	public int getProductnum() {
-		return productnum;
+	public String getMemberid() {
+		return memberid;
 	}
-	public void setProductnum(int productnum) {
-		this.productnum = productnum;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
-	public int getQuantity() {
-		return quantity;
+	public Date getSysdate() {
+		return sysdate;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setSysdate(Date sysdate) {
+		this.sysdate = sysdate;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
+	
 }
