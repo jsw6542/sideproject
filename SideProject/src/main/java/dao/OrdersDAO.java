@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.CartVO;
+import vo.OrdersVO;
 
 public class OrdersDAO {
 
@@ -21,5 +22,9 @@ public class OrdersDAO {
 		return list;
 	}
 	
-	
+	//장바구니번호 추가
+	public int insertorder(OrdersVO vo) {
+		int insert = sqlSession.insert("c.insertorder", vo);
+		return insert;
+	}
 }
