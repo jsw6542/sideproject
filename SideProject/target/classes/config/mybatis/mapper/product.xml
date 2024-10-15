@@ -37,6 +37,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE no BETWEEN #{start} AND #{end}
 	</select>
 	
+	<!-- 관리자용 상품 조회 페이징 쿼리 (필요시 확장 가능) -->
+	<select id="adminPagingselect" parameterType="producttwo" resultType="product">
+	    SELECT * FROM (
+	        SELECT 
+	            RANK() OVER (ORDER BY productnum ASC) AS no,
+	            p.*
+	        FROM 
+	            product p
+	        <if test="title != null and title != ''">
+	            WHERE UPPER(productname) LIKE '%' || #{title} || '%'
+	        </if>
+	    )
+	    WHERE no BETWEEN #{start} AND #{end}
+	</select>
+	
 	<!-- 전체 상품 수 조회 -->
     <select id="getrowtotal" parameterType="producttwo" resultType="int">
         SELECT COUNT(*) 

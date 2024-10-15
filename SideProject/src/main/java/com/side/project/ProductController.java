@@ -7,7 +7,7 @@ import util.Paging;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.ProductDAO;
+import vo.MemberVO;
 import vo.ProductVO;
 import vo.ProductVOtwo;
 
@@ -175,7 +176,81 @@ public class ProductController {
 	    return VIEW_PATH + "listdetail.jsp";
 	}
 	
+	//관리자 상품 목록페이지
+	@RequestMapping("/admin/productlist.do")
+	public String adminProductlist(
+	    @RequestParam(value = "page", defaultValue = "1") int page,
+	    @RequestParam(value = "searchTitle", required = false) String searchTitle, 
+	    Model model, HttpSession session) {
+
+	    // 로그인한 사용자의 권한 체크 (관리자인지 확인)
+	    MemberVO login = (MemberVO) session.getAttribute("login");
+	    if (login == null || !login.getMemberid().equals("admin")) {
+	        return "redirect:/login_form.do"; // 관리자가 아니면 로그인 페이지로 리다이렉트
+	    }
+
+	    int itemsPerPage = 8; 
+	    int start = (page - 1) * itemsPerPage + 1;
+	    int end = start + itemsPerPage - 1;
+
+	    ProductVOtwo productVOtwo = new ProductVOtwo();
+	    productVOtwo.setStart(start);
+	    productVOtwo.setEnd(end);
+
+	    if (searchTitle != null && !searchTitle.isEmpty()) {
+	        productVOtwo.setTitle(searchTitle);
+	    }
+
+	    List<ProductVO> productlist = product_dao.pagingselect(productVOtwo);
+	    int row_total = product_dao.getrowtotal(productVOtwo);
+	    String pageMenu = Paging.getPaging("admin/productlist.do", page, row_total, itemsPerPage, Common.ProductList.BLOCKPAGE);
+
+	    model.addAttribute("productlist", productlist);
+	    model.addAttribute("pageMenu", pageMenu);
+
+	    return VIEW_PATH + "adminlist.jsp";
+	}
+	
+	//상품수정페이지 이동
 	
 	
+	//상품수정처리
+	@RequestMapping(value = "/updateproduct.do")
+	public String updateProduct(ProductVO product, @RequestParam("image") MultipartFile imageFile) {
+	    String webPath = "/resources/product_img/";
+	    String savePath = application.getRealPath(webPath); // 절대 경로
+	    String productImagePath = "no_file"; // 기본 값
+
+	    // 이미지 파일이 존재할 경우 처리
+	    if (!imageFile.isEmpty()) {
+	        productImagePath = imageFile.getOriginalFilename(); // 업로드된 파일명 가져오기
+	        
+	        // 파일을 저장할 경로
+	        File saveFile = new File(savePath, productImagePath);
+	        
+	        // 파일이 이미 존재할 경우 중복 방지 처리
+	        if (saveFile.exists()) {
+	            long time = System.currentTimeMillis();
+	            productImagePath = String.format("%d_%s", time, productImagePath);
+	            saveFile = new File(savePath, productImagePath);
+	        }
+
+	        try {
+	            // 지정된 경로에 실제 파일을 물리적으로 복사
+	            imageFile.transferTo(saveFile);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            // 예외 처리 로직 추가
+	        }
+	    }
+
+	    // 상품 이미지 경로 설정
+	    product.setProductimage_path(productImagePath);
+	    
+	    // 상품 정보 업데이트
+	    product_dao.update(product); // 데이터베이스에서 업데이트
+
+	    return "redirect:/admin/productlist.do"; // 수정 후 상품 목록으로 리다이렉트
+	}
 	
 }

@@ -112,7 +112,12 @@ public class MemberController {
 	@RequestMapping("/login.do")
 	public String login(MemberVO vo, HttpSession session, CartVO cvo) {
 	    MemberVO login = member_dao.login(vo);
-
+	    
+	    if (login != null) {
+	        System.out.println("로그인한 사용자 역할: " + login.getMemberid()); // 역할 확인
+	        // 이후 권한 체크 로직
+	    }
+	    
 	    if (login != null) {
 	        session.setAttribute("login", login);
 	        session.setAttribute("memberid", login.getMemberid());
@@ -134,7 +139,12 @@ public class MemberController {
 	        int cartnum = cart.getCartnum();
 	        System.out.println("장바구니 번호: " + cartnum);
 
-	        return "redirect:home.do";
+	        // 사용자 권한 확인 후 리다이렉트
+	        if ("admin".equals(login.getMemberid())) { // 관리자 권한 확인
+	            return "redirect:adminpage.do"; // 관리자 페이지로 이동
+	        } else {
+	            return "redirect:home.do"; // 일반 사용자 홈 페이지로 이동
+	        }
 	    }
 
 	    return "redirect:login_form.do?fail=o";
@@ -220,6 +230,11 @@ public class MemberController {
 			
 	}
 	
+	//관리자 페이지 이동
+	@RequestMapping("/adminpage.do")
+	public String adminpage() {
+		return "/WEB-INF/views/adminpage.jsp";
+	}
 	
 	
 }

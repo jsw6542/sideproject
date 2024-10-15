@@ -54,6 +54,16 @@
                                 </form>
                             </li>
                             </c:if>
+                            <!-- 로그인 상태 -->
+                            <li class="nav-item">
+                            <c:if test="${login != null && login.memberid == 'admin' }">
+                            	<form class="d-flex" action="adminpage.do" method="get">
+                                    <button class="btn btn-outline-dark" type="submit">
+                                        관리자페이지
+                                    </button>
+                                </form>
+                            </c:if>
+                            </li>
                             <c:if test="${login != null }">
                             <li class="nav-item">
                                 <form class="d-flex" action="logout.do" method="get">
