@@ -65,7 +65,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" href="productdetail.do?productnum=${product.productnum}">자세히 보기</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="productmodify_form.do?productnum=${product.productnum}">수정 하기</a>
                                 </div>
                             </div>
                         </div>

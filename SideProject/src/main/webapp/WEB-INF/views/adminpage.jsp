@@ -14,34 +14,35 @@
     <h1 class="text-center my-4">관리자 페이지</h1>
 </header>
 
-<nav class="text-center mb-4">
-    <a class="btn btn-secondary" href="home.do">홈페이지 가기</a>
-</nav>
-
 <div class="container">
     <div class="mb-4">
         <h2>상품 관리</h2>
         <div>
-            <a class="btn btn-primary" href="productList.do">상품 리스트</a>
-            <a class="btn btn-success" href="productAddForm.do">상품 등록</a>
-            <a class="btn btn-warning" href="productEditForm.do">상품 수정</a>
+            <a class="btn btn-primary" href="admin/productlist.do">상품 리스트</a>
+            <a class="btn btn-success" href="productinsert_form.do">상품 등록</a>
         </div>
     </div>
 
     <div class="mb-4">
         <h2>주문 관리</h2>
         <div>
-            <a class="btn btn-primary" href="orderList.do">주문 리스트</a>
-            <a class="btn btn-info" href="orderDetail.do">주문 상세보기</a>
-            <a class="btn btn-secondary" href="orderStatusUpdate.do">주문 상태 업데이트</a>
+            <a class="btn btn-primary" href="orderlist.do">주문 리스트</a><!-- 주문리스트에서 상세보기로 -->
+            <a class="btn btn-secondary" href="orderstatusupdate.do">주문 상태 업데이트</a>
         </div>
     </div>
 
     <div class="mb-4">
         <h2>고객 관리</h2>
         <div>
-            <a class="btn btn-primary" href="customerList.do">고객 리스트</a>
+            <a class="btn btn-primary" href="memberlist.do">고객 리스트</a>
         </div>
+    </div>
+    
+    <div class="mb-4">
+    	<h2>고객 관리</h2>
+    	<div>
+    		<a class="btn btn-primary" href="boardlist.do">게시판 목록</a>
+    	</div>
     </div>
 </div>
 

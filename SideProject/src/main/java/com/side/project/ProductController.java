@@ -212,10 +212,17 @@ public class ProductController {
 	}
 	
 	//상품수정페이지 이동
-	
+	@RequestMapping("productmodify_form.do")
+	public String productmodify_form(Model model,@RequestParam("productnum") int productnum) {
+		//ProductVO productinfo = product_dao.selectproductinfo(productnum);
+		
+		//model.addAttribute("productinfo", productinfo);
+		
+		return VIEW_PATH + "adminmodify.jsp";
+	}
 	
 	//상품수정처리
-	@RequestMapping(value = "/updateproduct.do")
+	@RequestMapping("/productmodify.do")
 	public String updateProduct(ProductVO product, @RequestParam("image") MultipartFile imageFile) {
 	    String webPath = "/resources/product_img/";
 	    String savePath = application.getRealPath(webPath); // 절대 경로

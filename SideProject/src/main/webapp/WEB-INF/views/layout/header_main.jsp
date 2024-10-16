@@ -20,15 +20,6 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="home.do">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="productlist.do">전체상품</a></li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li> -->
                     </ul>
                     
                     
@@ -48,7 +39,7 @@
                             </li>
                             <li class="nav-item">
                                 <form class="d-flex" action="join_form.do" method="get">
-                                    <button class="btn btn-outline-dark" type="submit">
+                                    <button class="btn btn-outline-dark " type="submit">
                                         회원가입
                                     </button>
                                 </form>
@@ -58,7 +49,7 @@
                             <li class="nav-item">
                             <c:if test="${login != null && login.memberid == 'admin' }">
                             	<form class="d-flex" action="adminpage.do" method="get">
-                                    <button class="btn btn-outline-dark" type="submit">
+                                    <button class="btn btn-outline-dark " type="submit">
                                         관리자페이지
                                     </button>
                                 </form>
@@ -67,14 +58,14 @@
                             <c:if test="${login != null }">
                             <li class="nav-item">
                                 <form class="d-flex" action="logout.do" method="get">
-                                    <button class="btn btn-outline-dark" type="submit">
+                                    <button class="btn btn-outline-dark " type="submit">
                                         로그아웃
                                     </button>
                                 </form>
                             </li>
                             <li class="nav-item">
                                 <form class="d-flex" action="mypage.do" method="get">
-                                    <button class="btn btn-outline-dark" type="submit">
+                                    <button class="btn btn-outline-dark " type="submit">
                                         마이페이지
                                     </button>
                                 </form>
@@ -84,7 +75,7 @@
                             <!-- 게시판 페이지 가기로 변경해야함 -->
                             <li class="nav-item">
                                 <form class="d-flex" action="boardlist.do" method="get">
-                                    <button class="btn btn-outline-dark" type="submit">
+                                    <button class="btn btn-outline-dark " type="submit">
                                         게시판
                                     </button>
                                 </form>
@@ -95,7 +86,7 @@
                 <!-- Cart Button -->
                 <form class="d-flex">
     				<input type="hidden" id="memberIdInput" name="memberid" value="${login.memberid}">
-    				<button id="cartButton" class="btn btn-outline-dark" type="button" onclick="location.href='cartlistview.do?memberid=${login.memberid}';">
+    				<button id="cartButton" class="btn btn-outline-dark " type="button" onclick="location.href='cartlistview.do?memberid=${login.memberid}';">
         				<i class="bi-cart-fill me-1"></i>
         				Cart
     				</button>

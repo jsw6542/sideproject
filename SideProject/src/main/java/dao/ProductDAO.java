@@ -75,4 +75,7 @@ SqlSession sqlSession;
 		ProductVO product = sqlSession.selectOne("p.product_selectbyid",productnum);
 		return product;
 	}
+	
+	//관리자 상품 조회
+	//public 
 }
