@@ -30,10 +30,6 @@
     <div>${vo.readhit}</div>
 
     <div>
-        <c:if test="${login.memberid != null}">
-            <input type="button" value="댓글쓰기"
-                   onclick="location.href='reply_form.do?idx=${vo.boardidx}'">
-        </c:if>
         <%-- <c:if test="${vo.memberid == login.nickname}"> --%>
         <c:if test="${vo.memberid == login.nickname}"> <!-- 글작성자일경우 수정,삭제권한 -->
             <input type="button" value="수정"
@@ -41,13 +37,12 @@
             <input type="button" value="삭제"
                    onclick="location.href='delete.do?boardidx=${vo.boardidx}'">
         </c:if>
-        <input type="button" value="목록" onclick="location.href='boardlist.do'">
+        
     </div>
 </div>
 
 <!-- 댓글 목록 -->
-<div style="width: 400px; border: 1px solid #000; margin-top: 20px;">
-    <div style="text-align: center;">댓글</div>
+<div>
 
     <ul>
         <c:forEach var="r" items="${list}">
@@ -64,5 +59,21 @@
         </c:forEach>
     </ul>
 </div>
+
+<c:if test="${login.memberid != null}">
+    <div style="width: 400px; margin-top: 20px;">
+        <form action="reply_write.do" method="post">
+            <input type="hidden" name="boardidx" value="${vo.boardidx}">
+            <input type="hidden" name="memberid" value="${login.memberid}">
+            <textarea name="content" rows="4" cols="50" placeholder="댓글을 입력하세요"></textarea>
+            <br>
+            <input type="submit" value="댓글 작성">
+            <input type="button" value="목록" onclick="location.href='boardlist.do'">
+        </form>
+    </div>
+</c:if>
+
+
+
 </body>
 </html>

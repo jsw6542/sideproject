@@ -22,9 +22,29 @@
         .post-title {
             font-weight: bold; /* 제목 굵게 */
         }
-    </style>
+    
+
+		.post-header div {
+        display: inline-block;
+        text-align: center;
+	    }
+	    
+	   footer {
+		    background-color: rgba(var(--bs-dark-rgb), 1);
+		    padding-top: 3rem;
+		    padding-bottom: 3rem;
+		    text-align: center;
+		    position: fixed; /* 고정 위치 */
+		    bottom: 0;       /* 화면 아래에 위치 */
+		    left: 0;
+		    width: 100%;
+		    z-index: 100;    /* 다른 요소와 겹치지 않도록 */
+		}
+	   
+</style>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 	<h1>게시판 목록</h1>
 	
 	<!-- 게시판 헤더 -->
@@ -59,5 +79,6 @@
     <div>
         <a href="boardinsert.do" class="boardinsert-button">글쓰기</a>
     </div>
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>

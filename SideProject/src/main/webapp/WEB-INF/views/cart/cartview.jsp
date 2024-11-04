@@ -101,6 +101,7 @@
                 <div>가격 : ${item.price}원</div>
                 <div>수량 : ${item.quantity}개</div>
                 <div>합계 : ${item.price * item.quantity}원</div>
+                ----------------------------------
             </div>
             
             <c:set var="totalprice" value="${totalprice + (item.price * item.quantity) }" />

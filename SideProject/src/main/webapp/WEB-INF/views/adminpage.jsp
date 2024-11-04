@@ -19,7 +19,7 @@
         <h2>상품 관리</h2>
         <div>
             <a class="btn btn-primary" href="admin/productlist.do">상품 리스트</a>
-            <a class="btn btn-success" href="productinsert_form.do">상품 등록</a>
+            <a class="btn btn-success" href="productadd_form.do">상품 등록</a>
         </div>
     </div>
 
