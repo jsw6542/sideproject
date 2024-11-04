@@ -26,7 +26,7 @@ public class PaymentController {
 	CartDAO cart_dao;
 	OrdersDAO orders_dao;
 	
-	//실제 결제를 구현할 수 있는지 판단해야함
+	
 	
 	
 	@RequestMapping("payment.do")

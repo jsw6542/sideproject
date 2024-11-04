@@ -26,16 +26,16 @@
             const combinedNames = productNames.join(', '); // 상품명 결합
 
             // 세션에서 로그인 정보 가져오기
-            const memberEmail1 = "${login.email1}"; // 로그인한 회원의 이메일
-            const memberEmail2 = "${login.email2}"; // 로그인한 회원의 이메일
-            const memberName = "${login.membername}"; // 로그인한 회원의 이름
-            const memberTel = "${login.member_phone}"; // 로그인한 회원의 전화번호
-            const memberAddr1 = "${login.address1}"; // 로그인한 회원의 주소
-            const memberAddr2 = "${login.address3}"; // 로그인한 회원의 주소
-            const memberPostcode = "${login.zip_code}"; // 로그인한 회원의 우편번호
+            const email1 = "${login.email1}"; // 로그인한 회원의 이메일
+            const email2 = "${login.email2}"; // 로그인한 회원의 이메일
+            const membername = "${login.membername}"; // 로그인한 회원의 이름
+            const memberphone = "${login.member_phone}"; // 로그인한 회원의 전화번호
+            const address1 = "${login.address1}"; // 로그인한 회원의 주소
+            const address2 = "${login.address3}"; // 로그인한 회원의 주소
+            const zip_code = "${login.zip_code}"; // 로그인한 회원의 우편번호
             
-            const buyerEmail = `${memberEmail1}@${memberEmail2}`; // 이메일 결합
-            const buyerAddr = `${memberAddr1} ${memberAddr2}`; // 주소 결합
+            const buyerEmail = `${email1}@${email2}`; // 이메일 결합
+            const buyerAddr = `${address1} ${address2}`; // 주소 결합
 
             IMP.request_pay({
                 pg: "kakaopay.TC0ONETIME",
@@ -44,10 +44,10 @@
                 name: combinedNames, // 모든 상품 이름
                 amount: totalPrice, // 총 금액
                 buyer_email: buyerEmail, // 구매자 이메일
-                buyer_name: memberName, // 구매자 이름
-                buyer_tel: memberTel, // 구매자 전화번호
+                buyer_name: membername, // 구매자 이름
+                buyer_tel: memberphone, // 구매자 전화번호
                 buyer_addr: buyerAddr, // 구매자 주소
-                buyer_postcode: memberPostcode, // 구매자 우편번호
+                buyer_postcode: zip_code, // 구매자 우편번호
             }, function (rsp) {
                 if (rsp.success) {
                     // 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
