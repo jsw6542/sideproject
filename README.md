@@ -43,18 +43,12 @@
 # 📂 프로젝트 구조
 src/main/
 │
-├──
-java/com.arcana.controller      # 컨트롤러 계층
-├──
-java/com.arcana.dao             # DAO 계층
-├──
-java/com.arcana.vo              # VO (Value Object)
+├── java/com.arcana.controller      # 컨트롤러 계층
+├── java/com.arcana.dao             # DAO 계층
+├── java/com.arcana.vo              # VO (Value Object)
 │
-
-├──
-resources/mapper                # MyBatis 매퍼 파일
-├──
-webapp/
+├──  resources/mapper                # MyBatis 매퍼 파일
+├──  webapp/
     ├── WEB-INF/jsp/               # JSP 뷰 파일
     ├── assets/                    # 정적 파일 (CSS, JS, Images)
 - - -
