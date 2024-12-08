@@ -40,18 +40,6 @@
 * 개발 도구: STS3 (Spring Tool Suite)
 * 버전 관리: Git & GitHub
 - - -
-# 📂 프로젝트 구조
-src/main/
-│
-├── java/com.arcana.controller      # 컨트롤러 계층
-├── java/com.arcana.dao             # DAO 계층
-├── java/com.arcana.vo              # VO (Value Object)
-│
-├──  resources/mapper                # MyBatis 매퍼 파일
-├──  webapp/
-    ├── WEB-INF/jsp/               # JSP 뷰 파일
-    ├── assets/                    # 정적 파일 (CSS, JS, Images)
-- - -
 # 📸 프로젝트 데모
 (프로젝트의 주요 화면 캡처 이미지를 추가하세요.)
 - - -
