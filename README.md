@@ -44,5 +44,5 @@
 (프로젝트의 주요 화면 캡처 이미지를 추가하세요.)
 - - -
 # 🗂 참고 자료
-Spring 공식 문서
-Oracle Database 공식 문서
+* Spring 공식 문서
+* Oracle Database 공식 문서
