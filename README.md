@@ -52,7 +52,7 @@
 * 개발 도구: STS3 (Spring Tool Suite)
 * 버전 관리: Git & GitHub
 - - -
-### 📂 프로젝트 구조
+# 📂 프로젝트 구조
 src/main/
 │
 ├── java/com.arcana.controller      # 컨트롤러 계층
@@ -64,9 +64,9 @@ src/main/
     ├── WEB-INF/jsp/               # JSP 뷰 파일
     ├── assets/                    # 정적 파일 (CSS, JS, Images)
 - - -
-### 📸 프로젝트 데모
+# 📸 프로젝트 데모
 (프로젝트의 주요 화면 캡처 이미지를 추가하세요.)
 - - -
-### 🗂 참고 자료
+# 🗂 참고 자료
 Spring 공식 문서
 Oracle Database 공식 문서
