@@ -43,9 +43,9 @@
 # 📂 프로젝트 구조
 src/main/
 │
-├── java/com.sideproject.controller      # 컨트롤러 계층
-├── java/com.sideproject.dao             # DAO 계층
-├── java/com.sideproject.vo              # VO (Value Object)
+├── java/com.arcana.controller      # 컨트롤러 계층
+├── java/com.arcana.dao             # DAO 계층
+├── java/com.arcana.vo              # VO (Value Object)
 │
 ├── resources/mapper                # MyBatis 매퍼 파일
 ├── webapp/
