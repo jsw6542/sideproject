@@ -59,6 +59,7 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 	<form method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="memberid" value="${login.memberid}">
 		<div>
@@ -99,6 +100,6 @@
 	
 </form>
 
-
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>

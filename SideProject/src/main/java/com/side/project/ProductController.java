@@ -122,16 +122,7 @@ public class ProductController {
 		return "redirect:home.do"; // + "insertResult.jsp?res=" + result였음
 		
 	}
-	
-	
-	 //상품 리스트 페이지 이동 아래 페이징처리로 수정예정
-		/*
-		 * @RequestMapping("/productlist.do") public String productlist(Model model) {
-		 * List<ProductVO> productlist = product_dao.selectpagingAll();
-		 * model.addAttribute("productlist", productlist); return VIEW_PATH +
-		 * "list.jsp"; }
-		 */
-	 
+		 
 	 //상품 목록 페이징처리
 	 @RequestMapping("/productlist.do")
 	 public String productlist(

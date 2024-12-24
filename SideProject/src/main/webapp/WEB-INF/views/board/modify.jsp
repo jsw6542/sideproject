@@ -20,6 +20,7 @@
 		} 
 	</script>
 <body>
+<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 	<form action="boardmodify.do" method="post">
 	    <input type="hidden" name="boardidx" value="${vo.boardidx}"> <!-- 글 고유 번호 -->
 	
@@ -56,5 +57,7 @@
 	        <input type="button" value="취소" onclick="location.href='boardlist.do'">
 	    </div>
 	</form>
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
+
 </html>

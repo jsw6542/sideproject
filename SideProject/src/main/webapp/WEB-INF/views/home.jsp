@@ -56,9 +56,7 @@
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
 <h1>
-	
-	안녕하세요   
-	환영합니다
+
 	<!--비로그인시-->
 	<c:if test="${login == null }">
 		<a href="join_form.do">회원가입</a>

@@ -8,6 +8,7 @@
 <title>게시글 상세페이지에서 댓글을 달 수 있게 함. 비밀글로 문의 게시판까지 통합되게 함</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 <div>
     <div>제목</div>
     <div>${vo.title}</div>
@@ -74,6 +75,6 @@
 </c:if>
 
 
-
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>
 </html>
