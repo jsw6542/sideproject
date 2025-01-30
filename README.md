@@ -42,7 +42,7 @@
 * 버전 관리: Git & GitHub
 - - -
 # 📸 프로젝트 데모
-![Image](https://github.com/user-attachments/assets/44e5a033-1fb9-4881-b342-dd5b690d2bb5)
+![Image](https://github.com/user-attachments/assets/18d586c0-834f-44fb-90a8-25b4302b26ec)
 ![Image](https://github.com/user-attachments/assets/341e7608-36f1-41bb-a2b5-4b0b568f22b0)
 프로젝트의 메인 화면으로 헤더를 통해 여러기능 사용가능
 - - -
