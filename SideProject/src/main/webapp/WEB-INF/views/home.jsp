@@ -64,42 +64,6 @@
         
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
-<%-- <h1>
-
-	<!--비로그인시-->
-	<c:if test="${login == null }">
-		<a href="join_form.do">회원가입</a>
-		<a href="login_form.do">로그인</a>
-		<a href="write_form.do">게시판 글쓰기</a>
-	</c:if>
-	<!-- 로그인시 -->
-	<c:if test="${login != null }">
-		<a href="mypage.do">마이페이지</a>
-		<a href="logout.do">로그아웃</a>
-		<a href="orderinfo.do">주문정보</a><!-- 구현예정 -->
-		<a href="delete_form.do">회원탈퇴</a><!-- 마이페이지안에 넣기 -->
-		<a href="cartlistview.do">장바구니</a>
-		<!-- 따로 탭 넣어야함 -->
-		<!-- 게시판 구현해야함 -->
-	</c:if>
-	<!-- 추후에 네비게이션 바를 이용해 카테로리로 상품을 나열 -->
-	
-	
-	<!-- ㅁㅁ관리자 로그인 페이지를 따로 만들지 고민중ㅁㅁ 관리자 로그인시 관리자 페이지로 이동 -->
-	<c:if test="${login != null && login.memberid == 'admin' }">
-		관리자페이지<!-- ㅁㅁㅁㅁㅁㅁㅁㅁㅁ관리자 페이지 추가 예정 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ-->
-		<a href="productadd_form.do">상품추가페이지</a>
-		<a href="productdelte_form.do">상품삭제페이지</a>
-	</c:if>
-	
-	<!-- 메인페이지 -->
-	<!-- 메인페이지에 상품 몇개 보여주기 -->
-	<a href="productlist.do">상품 리스트 페이지 이동</a>
-	<a href="productdetail_form.do">상품 상세 설명 페이지이동</a>
-	
-	<a href="payment.do">결제 페이지 이동</a>
-</h1> --%>
-
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

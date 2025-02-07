@@ -151,7 +151,9 @@
     
     <!-- 글쓰기 버튼 -->
     <div style="text-align: right;">
+    	<c:if test="${login != null }">
         <a href="boardinsert_form.do" class="boardinsert-button">글쓰기</a>
+    	</c:if>
     </div>
 
     <!-- Bootstrap core JS-->

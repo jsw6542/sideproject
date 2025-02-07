@@ -98,10 +98,12 @@
 
                 </ul>
                 <!-- Cart Button -->
-                <form class="d-flex">
-    				<input type="hidden" id="memberidinput" name="memberid" value="${login.memberid}">
-    				<button id="cartButton" class="btn btn-outline-dark " type="button" onclick="location.href='cartlistview.do?memberid=${login.memberid}';">
-        				Cart
+                <form class="d-flex" method="POST" action="cartlistview.do">
+    				<!-- hidden input 필드를 통해 memberid를 서버로 전송 -->
+   					<input type="hidden" id="memberidinput" name="memberid" value="${login.memberid}">
+   					<!-- 장바구니 버튼 클릭 시 form이 제출되도록 수정 -->
+    				<button id="cartButton" class="btn btn-outline-dark" type="submit">
+        			Cart
     				</button>
 				</form>
                 </div>

@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니 확인 페이지</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	
     <script>
@@ -31,6 +33,8 @@
             const address1 = "${login.address1}"; // 로그인한 회원의 주소
             const address2 = "${login.address3}"; // 로그인한 회원의 주소
             const zip_code = "${login.zip_code}"; // 로그인한 회원의 우편번호
+            const merchantuid = "${merchantuid}";
+      
             
             const buyerEmail = `${email1}@${email2}`; // 이메일 결합
             const buyerAddr = `${address1} ${address2}`; // 주소 결합
@@ -38,7 +42,7 @@
             IMP.request_pay({
                 pg: "kakaopay.TC0ONETIME",
                 pay_method: "card",
-                merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
+                merchant_uid: merchantuid, // 주문 고유 번호
                 name: combinedNames, // 모든 상품 이름
                 amount: totalPrice, // 총 금액
                 buyer_email: buyerEmail, // 구매자 이메일
@@ -57,15 +61,17 @@
                             imp_uid: rsp.imp_uid // 필요한 데이터 전달
                         }
                     }).done(function (data) {
+                    	console.log(data);
                         // 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                         if (data.status === 'completed') {
                             var msg = '결제가 완료되었습니다.';
-                            msg += '\n고유ID : ' + rsp.imp_uid;
-                            msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                            msg += '\n결제 금액 : ' + rsp.paid_amount;
-                            msg += '\n카드 승인번호 : ' + rsp.apply_num;
+                            msg += '\n고유ID : ' + data.imp_uid;
+                            msg += '\n상점 거래ID : ' + data.merchant_uid;
+                            msg += '\n결제 금액 : ' + data.paid_amount;
+                            msg += '\n카드 승인번호 : ' + data.apply_num;
 
                             alert(msg);
+                            alert('결제 완료');
                         } else {
                             alert("결제가 완료되지 않았습니다.");
                         }
