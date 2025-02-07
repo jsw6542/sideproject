@@ -14,6 +14,10 @@
 	이메일
 	이름
 	회원정보 수정하기 버튼
+	
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->	
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>	
 </body>
 </html>

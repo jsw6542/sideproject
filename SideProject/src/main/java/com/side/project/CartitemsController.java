@@ -70,7 +70,7 @@ public class CartitemsController {
 	    return "/WEB-INF/views/cart/cartview.jsp";
 	}
 	
-	//결제 후 db저장
+	
 	
 	
 }

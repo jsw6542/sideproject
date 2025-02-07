@@ -7,8 +7,22 @@
 <meta charset="UTF-8">
 <title>아르카나 메인 페이지</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+    .nav-item form {
+        margin-bottom: 0; /* form 요소의 마진 제거 */
+    }
+    .nav-item button {
+        margin-right: 10px; /* 버튼 간격 일정하게 설정 */
+    }
+	/* #cartButton {
+        margin-top: 16px; /* 버튼 위쪽에 10px 여백 추가 */
+    } */
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
 </head>
 <body>
 	<!-- Navigation-->
@@ -85,9 +99,8 @@
                 </ul>
                 <!-- Cart Button -->
                 <form class="d-flex">
-    				<input type="hidden" id="memberIdInput" name="memberid" value="${login.memberid}">
+    				<input type="hidden" id="memberidinput" name="memberid" value="${login.memberid}">
     				<button id="cartButton" class="btn btn-outline-dark " type="button" onclick="location.href='cartlistview.do?memberid=${login.memberid}';">
-        				<i class="bi-cart-fill me-1"></i>
         				Cart
     				</button>
 				</form>
@@ -104,8 +117,8 @@
             </div>
         </header>
  <!-- Bootstrap core JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <!-- Core theme JS -->
     <script src="js/scripts.js"></script>
     

@@ -5,9 +5,18 @@
 <html>
 <head>
 	<title>아르카나</title>
+	
+	<style>
+	#cartButton {
+   	 	position: relative;
+  	 	top: 8px; /* 원하는 위치로 조정 */
+	}
+	</style>
 </head>
 <body>
+<div class="wrapper">
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
+
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -55,7 +64,7 @@
         
 <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 
-<h1>
+<%-- <h1>
 
 	<!--비로그인시-->
 	<c:if test="${login == null }">
@@ -89,11 +98,12 @@
 	<a href="productdetail_form.do">상품 상세 설명 페이지이동</a>
 	
 	<a href="payment.do">결제 페이지 이동</a>
-</h1>
+</h1> --%>
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+</div>
 </body>
 </html>

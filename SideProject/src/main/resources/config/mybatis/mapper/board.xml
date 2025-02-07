@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				'N',				<!-- 삭제여부 확인 오류나면 여기 확인 null값 입력하면 N으로 설정되게 함 -->
 				CURRENT_TIMESTAMP, <!-- 생성시간 -->
 				CURRENT_TIMESTAMP, <!-- 수정시간 -->
-				COALESCE(#{productname, jdbcType=VARCHAR}, NULL),
-				#{board_type}
+				#{productname, jdbcType=VARCHAR},
+				#{board_type},
+				#{nickname, jdbcType=VARCHAR}
 		)
 	</insert>
     

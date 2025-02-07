@@ -9,8 +9,6 @@
 <title>장바구니 확인 페이지</title>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	
-	
-	
     <script>
         function requestPay() {
             IMP.init("imp00468062");
@@ -81,7 +79,9 @@
         }
     </script>
 </head>
+
 <body>
+<div class="wrapper">
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
     <div class="cart-container">
         <h1>장바구니</h1>
@@ -115,6 +115,7 @@
 	<button onclick="requestPay()">결제하기</button><!-- 결제하기 버튼 -->
 	
     </div>
-<%@ include file="/WEB-INF/views/layout/footer.jsp"%>    
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+</div>
 </body>
 </html>

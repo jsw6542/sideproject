@@ -211,77 +211,132 @@
 	}
 </script>
 
+<style>
+        /* 기본 스타일 */
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+                padding: 10px;
+            }
+            .form-group label, 
+            .form-group input, 
+            .form-group select, 
+            .form-group button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .d-flex {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    
 </head>
 
 <body>
+<div class="wrapper">
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
+    
     <form id="joingt" action="join.do" method="post">
         <input type="hidden" name="check1" value="no">
         <input type="hidden" name="check2" value="no">
         
         <div class="form-container">
-            <h2>회원가입</h2>
+            <h2 class="text-center">회원가입</h2>
 
             <div class="form-group">
                 <label for="name">이름</label>
-                <input id="name" name="membername" size="15">
+                <input id="name" name="membername" class="form-control" size="15">
             </div>
 
             <div class="form-group">
                 <label for="email1">이메일</label>
-                
-                <input class="box" id="domain-txt" name="email1" size="15">
-                @
-                <input class="box" id="direct-input" name="direct_input" style="display: none;" placeholder="도메인 직접 입력" size="15">
-                <select class="box" id="domain-list" name="email2" onchange="checkDirectInput(this)">
-                    <option value="">선택</option>
-                    <option value="naver.com">naver.com</option>
-                    <option value="google.com">google.com</option>
-                    <option value="hanmail.net">hanmail.net</option>
-                    <option value="nate.com">nate.com</option>
-                    <option value="daum.net">daum.net</option>
-                </select>
-                <input type="text" id="direct-input" name="direct_email" style="display: none;" placeholder="직접 입력">
+                <div class="d-flex align-items-center">
+                    <input class="form-control" id="domain-txt" name="email1" size="15">
+                    <span class="mx-2">@</span>
+                    <input class="form-control" id="direct-input" name="direct_input" style="display: none;" placeholder="도메인 직접 입력" size="15">
+                    <select class="form-select" id="domain-list" name="email2" onchange="checkDirectInput(this)">
+                        <option value="">선택</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="google.com">google.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="daum.net">daum.net</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="id">아이디</label>
-                <input id="id" name="memberid" size="15">
-                <input type="button" value="중복검사" onclick="check_id(this.form);">
+                <div class="d-flex">
+                    <input id="id" name="memberid" class="form-control" style="width: 300px;">
+                    <button type="button" class="btn btn-secondary ms-2" onclick="check_id(this.form);">중복검사</button>
+                </div>
             </div>
             
             <div class="form-group">
                 <label for="zip_code">우편번호</label>
-                <input type="text" id="sample4_postcode" name="zip_code" placeholder="우편번호">
-                <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="sample4_roadAddress" name="address1" placeholder="도로명주소">
-                <input type="text" id="sample4_jibunAddress" name="address2" placeholder="지번주소">
-                <span id="guide" style="color:#999;display:none"></span>
-                <input type="text" id="sample4_detailAddress" name="address3" placeholder="상세주소">
+                <div class="d-flex">
+                    <input type="text" id="sample4_postcode" name="zip_code" class="form-control" style="width: 300px; placeholder="우편번호" >
+                    <button type="button" class="btn btn-secondary ms-2" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
+                </div>
+                <input type="text" id="sample4_roadAddress" name="address1" class="form-control mt-2" placeholder="도로명주소">
+                <input type="text" id="sample4_jibunAddress" name="address2" class="form-control mt-2" placeholder="지번주소">
+                <span id="guide" class="text-muted d-block mt-1" style="display:none"></span>
+                <input type="text" id="sample4_detailAddress" name="address3" class="form-control mt-2" placeholder="상세주소">
             </div>
 
             <div class="form-group">
                 <label for="pwd">비밀번호</label>
-                <input type="password" id="pwd" name="pwd" size="15">
+                <input type="password" id="pwd" name="pwd" class="form-control" size="15">
             </div>
 
             <div class="form-group">
                 <label for="pwdchk">비밀번호 확인</label>
-                <input type="password" id="pwdchk" name="pwdchk" size="15">
+                <input type="password" id="pwdchk" name="pwdchk" class="form-control" size="15">
             </div>
 
             <div class="form-group">
                 <label for="nickname">닉네임</label>
-                <input id="nickname" name="nickname" size="15">
-                <input type="button" value="중복검사" onclick="check_nickname(this.form);">
+                <div class="d-flex">
+                    <input id="nickname" name="nickname" class="form-control" style="width: 300px;">
+                    <button type="button" class="btn btn-secondary ms-2" onclick="check_nickname(this.form);">중복검사</button>
+                </div>
             </div>
 
-            <div class="form-actions">
-                <input type="button" value="가입하기" onclick="send_check(this.form);">
-                <input type="button" value="뒤로가기" onclick="location.href='home.do'"> <!-- home.do를 초기화면 url로 수정 -->
+            <div class="form-actions d-flex justify-content-between mt-3">
+                <button type="button" class="btn btn-primary" onclick="send_check(this.form);">가입하기</button>
+                <button type="button" class="btn btn-light" onclick="location.href='home.do'">뒤로가기</button>
             </div>
         </div>
     </form>
-<%@ include file="/WEB-INF/views/layout/footer.jsp"%>  
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+
+<%@ include file="/WEB-INF/views/layout/footer.jsp"%>   
+</div>
 </body>
+
 </html>

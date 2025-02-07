@@ -69,7 +69,7 @@ public class MemberController {
 			request.setAttribute("id", id.getMemberid());
 			request.setAttribute("name", id.getMembername());
 			
-			return VIEW_PATH + "Checkid.jsp";
+			return VIEW_PATH + "checkid.jsp";
 			
 		}
 		return "redirect:selectid_form.do?fail=o";
