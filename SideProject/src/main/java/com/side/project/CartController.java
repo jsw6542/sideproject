@@ -69,6 +69,7 @@ public class CartController {
 	    JSONObject responseJson = new JSONObject(); // JSON 객체 생성
 	    
 	    try {
+	    	
 	        // 로그인 정보 가져오기
 	        MemberVO login = (MemberVO) session.getAttribute("login");
 	        
