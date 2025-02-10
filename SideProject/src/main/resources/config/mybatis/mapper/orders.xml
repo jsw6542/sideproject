@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="o">
+
+	<!-- ordernum값 미리 생성 -->
+	<select id="orders_getnextordernum" resultType="int">
+    	SELECT ordernum_seq.nextval FROM dual
+	</select>
+	
+	<!-- 결제 후 db에 저장 -->
+	<insert id="orders_paymentorder" parameterType="orders">
+	    insert into orders values(
+	        #{ordernum},
+	        #{memberid}, 
+	        sysdate, 
+	        #{impuid}, 
+	        0,
+	        CURRENT_TIMESTAMP 
+	    )
+	</insert>
+	
+
+	
+	<select id="orders_getcartnum" resultType="int" parameterType="orders">
+    	select cartnum from cart where memberid = #{memberid}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

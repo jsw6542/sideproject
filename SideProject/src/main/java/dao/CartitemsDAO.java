@@ -28,7 +28,15 @@ public class CartitemsDAO {
 	}
 	
 	//주문정보 조회
-	public List<CartitemsVO> getCartItemsByOrderNum(String ordernum) {
-        return sqlSession.selectList("CartItemsMapper.getCartItemsByOrderNum", ordernum);
+	/*
+	 * public List<CartitemsVO> getCartItemsByOrderNum(String ordernum) { return
+	 * sqlSession.selectList("CartItemsMapper.getCartItemsByOrderNum", ordernum); }
+	 */
+	
+	//주문한 상품의 정보 조회
+	public List<CartitemsVO> selectorderitems(int cartnum) {
+       List<CartitemsVO> list = sqlSession.selectList("ci.cartitems_selectorderitems", cartnum);
+       return list;
     }
+	
 }

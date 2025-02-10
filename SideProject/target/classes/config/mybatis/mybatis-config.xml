@@ -16,6 +16,7 @@
 		 <typeAlias type="vo.ProductVOtwo" alias="producttwo"/>
 		 <typeAlias type="vo.OrdersVO" alias="orders"/>
 		 <typeAlias type="vo.CartitemsVO" alias="cartitems"/>
+		 <typeAlias type="vo.CartitemsVOtwo" alias="cartitemstwo"/>
 		 <typeAlias type="vo.BoardVO" alias="board"/>
 	</typeAliases>
 	
@@ -24,6 +25,7 @@
 		<mapper resource="config/mybatis/mapper/orderdetail.xml" />
 		<mapper resource="config/mybatis/mapper/cart.xml"/>
 		<mapper resource="config/mybatis/mapper/product.xml"/>
+		<mapper resource="config/mybatis/mapper/orders.xml" />
 		<mapper resource="config/mybatis/mapper/cartitems.xml"/>
 		<mapper resource="config/mybatis/mapper/board.xml"/>
 	</mappers>

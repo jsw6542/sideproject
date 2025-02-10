@@ -40,10 +40,18 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
+
+	<form action="productlist.do" method="get" class="text-center mb-4">
+	    <div class="input-group" style="max-width: 400px; margin-left: 340px; margin-top: 50px;">
+	        <input type="text" class="form-control" name="searchTitle" placeholder="상품명으로 검색" aria-label="상품명으로 검색">
+	        <button class="btn btn-outline-dark" type="submit">검색</button>
+	    </div>
+	</form>
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
-            <h1 class="text-center mb-4">상품 목록</h1>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
                 <c:forEach var="product" items="${productlist}">
                     <div class="col mb-5">
                         <div class="card h-100">
@@ -80,6 +88,7 @@
     </section>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     
     <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </body>

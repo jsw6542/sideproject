@@ -165,8 +165,22 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.13.1</version>
 		</dependency>
-
 		
+		<!-- orderscontroller에 있는 JSONObject사용을 위함 -->
+		<dependency>
+    		<groupId>org.json</groupId>
+    		<artifactId>json</artifactId>
+    		<version>20210307</version>
+		</dependency>
+
+		<!-- orderscontroller에 있는 requestbody 사용을 위함 -->
+		<!-- spring MVC에서 @RequestBody를 사용하려면 JSON을 변환하는 라이브러리가 필요해.
+Maven 프로젝트라면 pom.xml에 다음을 추가해야 해. -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version> <!-- Java 1.6에서는 2.9.x 버전까지만 지원 -->
+		</dependency>
 
 	</dependencies>
 	<build>

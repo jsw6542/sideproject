@@ -3,7 +3,8 @@ package vo;
 public class OrderDetailVO {
 	
 	private int orderidnum,ordernum,productnum,result,quantity;
-	private String ordername,orderphone,orderzip_code,order_adress1,order_adress2,order_adress3;
+	private String buyername,buyerzipcode,buyeradress1,buyeradress2,buyeradress3;
+	
 	public int getOrderidnum() {
 		return orderidnum;
 	}
@@ -34,42 +35,37 @@ public class OrderDetailVO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public String getOrdername() {
-		return ordername;
+	public String getBuyername() {
+		return buyername;
 	}
-	public void setOrdername(String ordername) {
-		this.ordername = ordername;
+	public void setBuyername(String buyername) {
+		this.buyername = buyername;
 	}
-	public String getOrderphone() {
-		return orderphone;
+	public String getBuyerzipcode() {
+		return buyerzipcode;
 	}
-	public void setOrderphone(String orderphone) {
-		this.orderphone = orderphone;
+	public void setBuyerzipcode(String buyerzipcode) {
+		this.buyerzipcode = buyerzipcode;
 	}
-	public String getOrderzip_code() {
-		return orderzip_code;
+	public String getBuyeradress1() {
+		return buyeradress1;
 	}
-	public void setOrderzip_code(String orderzip_code) {
-		this.orderzip_code = orderzip_code;
+	public void setBuyeradress1(String buyeradress1) {
+		this.buyeradress1 = buyeradress1;
 	}
-	public String getOrder_adress1() {
-		return order_adress1;
+	public String getBuyeradress2() {
+		return buyeradress2;
 	}
-	public void setOrder_adress1(String order_adress1) {
-		this.order_adress1 = order_adress1;
+	public void setBuyeradress2(String buyeradress2) {
+		this.buyeradress2 = buyeradress2;
 	}
-	public String getOrder_adress2() {
-		return order_adress2;
+	public String getBuyeradress3() {
+		return buyeradress3;
 	}
-	public void setOrder_adress2(String order_adress2) {
-		this.order_adress2 = order_adress2;
+	public void setBuyeradress3(String buyeradress3) {
+		this.buyeradress3 = buyeradress3;
 	}
-	public String getOrder_adress3() {
-		return order_adress3;
-	}
-	public void setOrder_adress3(String order_adress3) {
-		this.order_adress3 = order_adress3;
-	}
+	
 	
 	
 }

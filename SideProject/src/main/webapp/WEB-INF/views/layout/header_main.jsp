@@ -19,9 +19,7 @@
         margin-top: 16px; /* 버튼 위쪽에 10px 여백 추가 */
     } */
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS -->
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">    
 </head>
 <body>
@@ -114,19 +112,19 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">아르카나</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">다양한 인형들을 만나보세요!</p>
+                    <p class="lead fw-normal text-white-50 mb-0">다양한 인형들이 기다리는 곳!</p>
                 </div>
             </div>
         </header>
- <!-- Bootstrap core JS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- Core theme JS -->
-    <script src="js/scripts.js"></script>
+
+ <!--    <script src="js/scripts.js"></script> -->
     
      <!-- Custom JS for Cart Button -->
     
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
 </html>
 
 

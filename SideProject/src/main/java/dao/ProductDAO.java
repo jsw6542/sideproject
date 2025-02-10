@@ -35,25 +35,25 @@ SqlSession sqlSession;
 	
 	//전체 상품목록 불러오기
 	public List<ProductVO> selectAll() {
-		List<ProductVO> list = sqlSession.selectList("p.product_selectAll");
+		List<ProductVO> list = sqlSession.selectList("p.product_selectall");
 		return list;
 	}
 	
 	//페이징 처리 상품목록 불러오기
 	public List<ProductVO> pagingselect(ProductVOtwo productVOtwo) {
-		List<ProductVO> list = sqlSession.selectList("p.pagingselect",productVOtwo);
+		List<ProductVO> list = sqlSession.selectList("p.product_pagingselect",productVOtwo);
 		return list;
 	}
 	
 	//전체or검색 상품 수 조회
 	public int getrowtotal(ProductVOtwo productVOtwo) {
-		int res = sqlSession.selectOne("p.getrowtotal",productVOtwo);
+		int res = sqlSession.selectOne("p.product_getrowtotal",productVOtwo);
 		return res;
 	}
 	
 	//상품 상세페이지
 	public ProductVO selectdetail(int productnum) {
-		ProductVO product = sqlSession.selectOne("p.product_selectDetail",productnum);
+		ProductVO product = sqlSession.selectOne("p.product_selectdetail",productnum);
 		return product;
 	}
 	
@@ -65,7 +65,7 @@ SqlSession sqlSession;
 	
 	//사진 수정
 	public int image(ProductVO vo) {
-		int res = sqlSession.update("p.productmodify_image", vo);
+		int res = sqlSession.update("p.product_modifyimage", vo);
 		return res;
 	}
 	

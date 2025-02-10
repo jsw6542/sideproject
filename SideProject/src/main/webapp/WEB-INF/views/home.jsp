@@ -17,6 +17,13 @@
 <div class="wrapper">
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 
+		<form action="productlist.do" method="get" class="text-center mb-4">
+		    <div class="input-group" style="max-width: 400px; margin-left: 340px; margin-top: 50px;">
+		        <input type="text" class="form-control" name="searchTitle" placeholder="상품명으로 검색" aria-label="상품명으로 검색">
+		        <button class="btn btn-outline-dark" type="submit">검색</button>
+		    </div>
+		</form>
+		
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -67,7 +74,7 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<!-- <script src="js/scripts.js"></script> -->
 </div>
 </body>
 </html>

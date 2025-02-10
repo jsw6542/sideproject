@@ -123,8 +123,12 @@ public class MemberController {
 			} else {
 				System.out.println("기존 장바구니를 불러왔습니다: " + cart.getCartnum());
 			}
-
+			
 			session.setAttribute("cart", cart); // 세션에 장바구니 정보 저장
+			
+			session.setAttribute("cartnum", cart.getCartnum());
+			System.out.println("로그인시 가져오는 세션의 cartnum : "+ cart.getCartnum());
+			
 			int cartnum = cart.getCartnum();
 			System.out.println("장바구니 번호: " + cartnum);
 
@@ -175,8 +179,9 @@ public class MemberController {
 		String memberid = (String) session.getAttribute("memberid");
 		System.out.println(memberid);
 
-		member_dao.deletecart(memberid);
-
+		//member_dao.deletecart(memberid);  로그아웃시 장바구니가 사라지는 이유이다.
+		session.removeAttribute("cart"); // 세션에서 장바구니 제거 
+		
 		session.invalidate();
 
 		return "redirect:home.do";

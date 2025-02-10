@@ -149,6 +149,7 @@ public class ProductController {
 		// Model 객체에 데이터를 추가
 		model.addAttribute("productlist", productlist);
 		model.addAttribute("pageMenu", pageMenu);
+		model.addAttribute("searchTitle", searchTitle);
 
 		// JSP 페이지로 이동
 		return VIEW_PATH + "list.jsp";

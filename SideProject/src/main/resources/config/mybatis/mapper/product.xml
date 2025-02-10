@@ -18,12 +18,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 상품 사진 수정 -->
-	<update id = "productmodify_image" parameterType="product">
+	<update id = "product_modifyimage" parameterType="product">
 		update product set productimage_path=#{productimage_path} where productnum=#{productnum}
 	</update>
 
 	<!-- 상품 조회 페이징처리 -->
-	<select id = "pagingselect" parameterType="producttwo" resultType="product">
+	<select id = "product_pagingselect" parameterType="producttwo" resultType="product">
         SELECT * FROM (
             SELECT 
                 RANK() OVER (ORDER BY productnum ASC) AS no,
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자용 상품 조회 페이징 쿼리 (필요시 확장 가능) -->
-	<select id="adminPagingselect" parameterType="producttwo" resultType="product">
+	<!-- <select id="product_adminpagingselect" parameterType="producttwo" resultType="product">
 	    SELECT * FROM (
 	        SELECT 
 	            RANK() OVER (ORDER BY productnum ASC) AS no,
@@ -50,10 +50,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        </if>
 	    )
 	    WHERE no BETWEEN #{start} AND #{end}
-	</select>
+	</select> -->
 	
 	<!-- 전체 상품 수 조회 -->
-    <select id="getrowtotal" parameterType="producttwo" resultType="int">
+    <select id="product_getrowtotal" parameterType="producttwo" resultType="int">
         SELECT COUNT(*) 
         FROM product
         <if test="title != null and title != ''">
@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 	
 	<!-- 상품 전체 조회 -->
-	<select id = "product_selectAll" parameterType="product" resultType="product">
+	<select id = "product_selectall" parameterType="product" resultType="product">
 		select * from product
 	</select>
 	
@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 상품 상세조회 -->
-	 <select id="product_selectDetail" parameterType="product" resultType="Product"> <!-- 오류날시 파라미터int로 -->
+	 <select id="product_selectdetail" parameterType="product" resultType="product"> <!-- 오류날시 파라미터int로 -->
         select * from product where productnum = #{productnum}
     </select> 
 

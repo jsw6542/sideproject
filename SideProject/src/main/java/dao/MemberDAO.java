@@ -41,13 +41,13 @@ SqlSession sqlSession;
 	
 	//아이디 찾기
 	public MemberVO selectId(MemberVO vo) {
-		MemberVO id =  sqlSession.selectOne("m.select_id", vo);
+		MemberVO id =  sqlSession.selectOne("m.member_select_id", vo);
 		return id;
 	}
 	
 	//비밀번호 찾기
 	public MemberVO selectPw(MemberVO vo) {
-		MemberVO pw = sqlSession.selectOne("m.select_pw",vo);
+		MemberVO pw = sqlSession.selectOne("m.member_select_pw",vo);
 		return pw;
 	}
 	
@@ -71,13 +71,13 @@ SqlSession sqlSession;
 		
 	//아이디 중복검사
 	public int checkid(MemberVO vo) {
-		int check = sqlSession.selectOne("m.check_id", vo);
+		int check = sqlSession.selectOne("m.member_checkid", vo);
 		return check;
 	}
 		
 	//닉네임 중복검사
 	public int checknickname(MemberVO vo) {
-		int check = sqlSession.selectOne("m.check_nickname", vo);
+		int check = sqlSession.selectOne("m.member_checknickname", vo);
 		return check;
 	}
 }

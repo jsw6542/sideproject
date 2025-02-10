@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 상세페이지에서 댓글을 달 수 있게 함. 비밀글로 문의 게시판까지 통합되게 함</title>
+<title>아르카나 게시판 상세페이지</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
