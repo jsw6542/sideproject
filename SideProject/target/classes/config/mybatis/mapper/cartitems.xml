@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 장바구니에 담긴 상품 삭제 -->
 	<delete id="cartitems_delete" parameterType="cartitemstwo">
-		delete from cartitems where productnum = #{productnum} and memberid = #{memberid}
+		delete from cartitems where productnum = #{productnum} and cartnum = #{cartnum}
 	</delete>
 </mapper>
 

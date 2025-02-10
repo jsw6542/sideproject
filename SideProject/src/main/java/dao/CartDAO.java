@@ -39,8 +39,8 @@ SqlSession sqlSession;
 	}
 	
 	// 장바구니에 들어있는 상품 삭제
-	public int deletecartitem(int productnum, String memberid) {
-		CartitemsVOtwo param = new CartitemsVOtwo(productnum, memberid);
+	public int deletecartitem(int productnum, int cartnum) {
+		CartitemsVOtwo param = new CartitemsVOtwo(productnum, cartnum);
 		
 		int deletecartitem = sqlSession.delete("ci.cartitems_delete", param);
 		return deletecartitem;

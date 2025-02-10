@@ -96,39 +96,56 @@
         // 확인 메시지
         if (confirm("삭제하시겠습니까?")) {
             // 상품 번호를 서버로 전송
-            var url = "/cart/delete";  // 장바구니 상품 삭제 URL
-            var param = "productnum=" + productnum;
+            let url = "/project/cart/delete";  // 장바구니 상품 삭제 URL
+            let param = "productnum=" + productnum;
 
-            // XMLHttpRequest 객체 생성
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            console.log("상품 삭제 요청: " + param);  // 로그 추가: 파라미터 확인
 
-            // 요청이 완료된 후의 동작 처리
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    try {
-                        var response = JSON.parse(xhr.responseText); // 응답 JSON 파싱
-                        if (response.status === "success") {
-                            // 성공적으로 삭제되었으면 화면에서 해당 상품 삭제
-                            alert("삭제가 완료되었습니다.");
-                            document.getElementById("productnum_" + productnum).remove();  // DOM에서 삭제
-                        } else {
-                            alert("삭제 실패: " + response.message);
-                        }
-                    } catch (error) {
-                        alert("응답을 처리하는 도중 오류가 발생했습니다.");
-                        console.error(error);
-                    }
+            // fetch를 사용하여 AJAX 요청
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: param
+            })
+            .then(response => {
+                console.log("서버 응답 받음:", response);  // 로그 추가: 응답 확인
+                
+                // 응답 상태가 정상인지 확인
+                if (!response.ok) {
+                    throw new Error('서버 응답이 실패했습니다. 상태 코드: ' + response.status);
                 }
-            };
 
-            // 요청 보내기
-            xhr.send(param);
+                // JSON 형식 응답 파싱
+                return response.json();
+            })
+            .then(data => {
+                console.log("서버에서 받은 데이터:", data);  // 로그 추가: 받은 데이터 확인
+
+                if (data.status === "success") {
+                    // 성공적으로 삭제되었으면 화면에서 해당 상품 삭제
+                    alert("삭제가 완료되었습니다.");
+
+                    // 상품을 화면에서 제거
+                    let cartItemElement = document.getElementById("productnum_" + productnum);
+                    if (cartItemElement) {
+                        cartItemElement.remove();  // DOM에서 해당 상품 삭제
+                    } else {
+                        console.log("DOM에서 상품을 찾을 수 없음: productnum_" + productnum);  // 로그 추가: 상품 ID 확인
+                    }
+                } else {
+                    console.log("삭제 실패: " + data.message);  // 로그 추가: 실패 메시지
+                    alert("삭제 실패: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("상품 삭제 중 오류 발생:", error);  // 로그 추가: 에러 발생 시
+                alert("상품 삭제에 실패했습니다.");
+            });
         }
     }
 </script>
-
 </head>
 
 <body>
@@ -146,7 +163,7 @@
 		<c:set var="totalprice" value="0" /> <!-- 총 가격을 저장할 변수 0으로 설정 -->
 		
         <c:forEach var="item" items="${cartitems}">
-            <div class="cart-item">
+            <div id="productnum_${item.productnum}" class="cart-item">
                 <div>상품 번호 : ${item.productnum}</div>
                 <div>상품 이름 : ${item.productname}</div>
                 <div>가격 : ${item.price}원</div>

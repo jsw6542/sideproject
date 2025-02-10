@@ -3,12 +3,12 @@ package vo;
 public class CartitemsVOtwo {
 
     private int productnum;
-    private String memberid;
+    private int cartnum;
 
 	 // 생성자
-    public CartitemsVOtwo(int productnum, String memberid) {
+    public CartitemsVOtwo(int productnum, int cartnum) {
         this.productnum = productnum;
-        this.memberid = memberid;
+        this.cartnum = cartnum;
     }
 
 	public int getProductnum() {
@@ -19,13 +19,15 @@ public class CartitemsVOtwo {
 		this.productnum = productnum;
 	}
 
-	public String getMemberid() {
-		return memberid;
+	public int getCartnum() {
+		return cartnum;
 	}
 
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setCartnum(int cartnum) {
+		this.cartnum = cartnum;
 	}
+
+
 	 
 	 
 }

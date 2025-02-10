@@ -62,52 +62,43 @@ public class CartController {
 		return "redirect:/home.do"; // 새로고침 없이 적용하기
 	}
 	
-	// 장바구니에 들어있는 상품 삭제
-	@RequestMapping(value = "/cart/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/cart/delete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteCartItem(@RequestParam("productnum") int productnum, HttpSession session) {
-	    JSONObject responseJson = new JSONObject(); // JSON 객체 생성
-	    
 	    try {
-	    	
 	        // 로그인 정보 가져오기
 	        MemberVO login = (MemberVO) session.getAttribute("login");
-	        
-	        // 로그인 정보가 없으면 에러 응답
+
 	        if (login == null) {
-	            responseJson.put("status", "error");
-	            responseJson.put("message", "로그인 정보가 없습니다.");
-	            return responseJson.toString();
+	            return new JSONObject()
+	                    .put("status", "error")
+	                    .put("message", "로그인 정보가 없습니다.")
+	                    .toString();
 	        }
-	        
-	        // 장바구니 정보가 없으면 에러 응답
+
 	        Integer cartnum = (Integer) session.getAttribute("cartnum");
+
 	        if (cartnum == null) {
-	            responseJson.put("status", "error");
-	            responseJson.put("message", "장바구니 정보가 없습니다.");
-	            return responseJson.toString();
+	            return new JSONObject()
+	                    .put("status", "error")
+	                    .put("message", "장바구니 정보가 없습니다.")
+	                    .toString();
 	        }
-	        
-	        System.out.println("AJAX 장바구니 상품 삭제 요청: productnum = " + productnum);
-	        
+
 	        // 장바구니에서 상품 삭제
-	        int result = cart_dao.deletecartitem(productnum, login.getMemberid());
-	        
-	        // 삭제 결과 확인 후 응답
-	        if (result > 0) {
-	            responseJson.put("status", "success");
-	        } else {
-	            responseJson.put("status", "error");
-	            responseJson.put("message", "상품 삭제에 실패했습니다.");
-	        }
-	        
+	        cart_dao.deletecartitem(productnum, cartnum);
+
+	        // 성공 응답
+	        return new JSONObject()
+	                .put("status", "success")
+	                .toString();
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        responseJson.put("status", "error");
-	        responseJson.put("message", "상품 삭제에 실패했습니다.");
+	        return new JSONObject()
+	                .put("status", "error")
+	                .put("message", "상품 삭제에 실패했습니다.")
+	                .toString();
 	    }
-	    
-	    return responseJson.toString(); // JSON 응답 반환
 	}
 
 }
