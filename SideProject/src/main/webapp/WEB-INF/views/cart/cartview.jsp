@@ -42,6 +42,7 @@
         height: auto;
     }
 
+
     /* 총 가격을 오른쪽 끝에 배치 */
     .cart-total {
         display: flex;
