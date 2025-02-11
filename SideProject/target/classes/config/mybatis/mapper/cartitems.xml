@@ -15,12 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 장바구니 상품 조회 -->
-	<select id ="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
-		SELECT ci.*, p.PRODUCTNAME, p.PRICE
-        FROM cartitems ci
-        JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
-        WHERE ci.CARTNUM = #{cartnum}
-    </select>
+	<select id="cartitems_selectcartitems" parameterType="int" resultType="cartitems">
+	    SELECT ci.*, p.PRODUCTNAME, p.PRICE, p.PRODUCTIMAGE_PATH
+	    FROM cartitems ci
+	    JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
+	    WHERE ci.CARTNUM = #{cartnum}
+	</select>
     
     <!-- 현재 장바구니에 있는 상품 개수 조회 -->
     <select id="cartitems_itemsize" parameterType="int" resultType="int">

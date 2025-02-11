@@ -5,7 +5,15 @@ public class CartitemsVO {
 	private int cartitem_num,cartnum,productnum,quantity;
 	private String productname;
 	private int price;
+	private String productimage_path;
 
+	public String getProductimage_path() {
+		return productimage_path;
+	}
+
+	public void setProductimage_path(String productimage_path) {
+		this.productimage_path = productimage_path;
+	}
 
 	public String getProductname() {
 		return productname;

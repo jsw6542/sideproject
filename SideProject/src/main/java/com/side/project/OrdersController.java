@@ -161,7 +161,6 @@ public class OrdersController {
 		String impKey = "6482105521256214"; // Iamport API Key
 		String impSecret = "YfQBhATjbUPAk4ncvzm6r3C89ZCHJ62CrdOQRRSQ5ynoKLWYMDuXNOWC0QM6va2n5YZxBb5f74WaBkaG"; // Iamport
 																												// API
-																												// Secret
 
 		// 요청 파라미터 구성
 		String payload = "{\"imp_key\": \"" + impKey + "\", \"imp_secret\": \"" + impSecret + "\"}";

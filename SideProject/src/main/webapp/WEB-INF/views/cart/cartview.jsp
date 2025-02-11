@@ -7,6 +7,58 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니 확인 페이지</title>
+
+<style>
+    /* 컨테이너 스타일 */
+    .cart-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* 각 상품 항목을 위한 flexbox 설정 */
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #dee2e6; /* 구분선 */
+        padding: 10px 0;
+    }
+
+    /* 첫 번째 항목(맨윗줄)에만 검은색 테두리 추가 */
+    .cart-item:first-child {
+        border-top: 2px solid black; /* 상단 테두리 */
+    }
+    
+    /* 각 항목의 스타일 (상품 이미지, 이름 등) */
+    .cart-item div {
+        text-align: center;
+        flex: 1;
+    }
+
+    /* 상품 이미지 크기 설정 */
+    .cart-item img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    /* 총 가격을 오른쪽 끝에 배치 */
+    .cart-total {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    /* 결제 버튼 스타일 */
+    .payment-btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
@@ -91,103 +143,198 @@
         }
     </script>
     
-<script>
-    function deletecartitem(productnum) {
-        // 확인 메시지
-        if (confirm("삭제하시겠습니까?")) {
-            // 상품 번호를 서버로 전송
-            let url = "/project/cart/delete";  // 장바구니 상품 삭제 URL
-            let param = "productnum=" + productnum;
+	<script>
+	function deletecartitem(productnum) {
+	    // 확인 메시지
+	    if (confirm("삭제하시겠습니까?")) {
+	        let url = "/project/cart/delete";  // 장바구니 상품 삭제 URL
 
-            console.log("상품 삭제 요청: " + param);  // 로그 추가: 파라미터 확인
+	        console.log("상품 삭제 요청: productnum=" + productnum); // 로그 확인
 
-            // fetch를 사용하여 AJAX 요청
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: param
-            })
-            .then(response => {
-                console.log("서버 응답 받음:", response);  // 로그 추가: 응답 확인
-                
-                // 응답 상태가 정상인지 확인
-                if (!response.ok) {
-                    throw new Error('서버 응답이 실패했습니다. 상태 코드: ' + response.status);
-                }
+	        // jQuery AJAX 요청
+	        $.ajax({
+	            url: url,
+	            type: "POST",
+	            data: { productnum: productnum },  // form 데이터처럼 전송
+	            dataType: "json",  // 서버 응답을 JSON으로 기대
+	            success: function(data) {
+	                console.log("서버에서 받은 데이터:", data);  // 로그 추가
 
-                // JSON 형식 응답 파싱
-                return response.json();
-            })
-            .then(data => {
-                console.log("서버에서 받은 데이터:", data);  // 로그 추가: 받은 데이터 확인
+	                if (data.status === "success") {
+	                    alert("삭제가 완료되었습니다.");
 
-                if (data.status === "success") {
-                    // 성공적으로 삭제되었으면 화면에서 해당 상품 삭제
-                    alert("삭제가 완료되었습니다.");
+	                    // 상품을 화면에서 제거
+	                    let cartItemElement = $("#productnum_" + productnum);
+	                    console.log(cartItemElement);
+	                    if (cartItemElement.length) {
+	                        cartItemElement.remove();  // jQuery 방식으로 DOM에서 제거
 
-                    // 상품을 화면에서 제거
-                    let cartItemElement = document.getElementById("productnum_" + productnum);
-                    if (cartItemElement) {
-                        cartItemElement.remove();  // DOM에서 해당 상품 삭제
-                    } else {
-                        console.log("DOM에서 상품을 찾을 수 없음: productnum_" + productnum);  // 로그 추가: 상품 ID 확인
-                    }
-                } else {
-                    console.log("삭제 실패: " + data.message);  // 로그 추가: 실패 메시지
-                    alert("삭제 실패: " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("상품 삭제 중 오류 발생:", error);  // 로그 추가: 에러 발생 시
-                alert("상품 삭제에 실패했습니다.");
-            });
-        }
-    }
-</script>
+	                        // 🟢 장바구니가 비었는지 확인
+	                        checkIfCartIsEmpty();
+	                        
+	                 		// 🟢 주문 금액 즉시 업데이트
+							updateTotalPrice();
+
+	                    } else {
+	                        console.log("DOM에서 상품을 찾을 수 없음: productnum_" + productnum);
+	                    }
+	                } else {
+	                    console.log("삭제 실패: " + data.message);
+	                    alert("삭제 실패: " + data.message);
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("상품 삭제 중 오류 발생:", error);  // 에러 로그
+	                alert("상품 삭제에 실패했습니다.");
+	            }
+	        });
+	    }
+	}
+	    
+	 // 🟢 주문 금액 즉시 업데이트
+	    function updateTotalPrice() {
+	        let cartItems = document.querySelectorAll(".cart-item"); // 남아있는 상품들
+	        let ctotalprice = 0;
+	        
+	        // 첫 번째 항목 제외하고 상품 항목만 선택
+	        cartItems = Array.from(cartItems).slice(1);  // 첫 번째 항목을 제외하고 나머지 상품만 선택
+	        console.log("cart items 조회 : ",cartItems)
+	        
+	
+	        // 🟢 남아있는 상품들의 가격을 다시 합산
+	        cartItems.forEach(item => {
+	            let priceText = item.querySelector(".product-price").innerText; // 가격 정보
+	            let quantityText = item.querySelector(".product-quantity").innerText; // 수량 정보
+	
+	            let price = parseInt(priceText.replace(/[^\d]/g, ""));
+	            let quantity = parseInt(quantityText.replace(/[^\d]/g, ""));
+	
+	            if (isNaN(price)) price = 0;
+	            if (isNaN(quantity)) quantity = 0;
+	            
+	           
+	            
+	            console.log("가격 텍스트:", priceText);
+	            console.log("수량 텍스트:", quantityText);
+	            
+	            console.log("가격 : ", price);
+	            console.log("수량 : ", quantity);
+	            
+	            
+	            ctotalprice += price * quantity;
+	            
+	            if (ctotalprice === undefined) {
+	                console.log("🚨 ctotalprice가 undefined입니다!");
+	            } else if (ctotalprice === null) {
+	                console.log("🚨 ctotalprice가 null입니다!");
+	            } else if (isNaN(ctotalprice)) {
+	                console.log("🚨 ctotalprice가 NaN입니다!");
+	            } else {
+	                console.log("✅ ctotalprice 값:", ctotalprice);
+	            }
+	            
+	            
+	            console.log("ctotalPrice 타입:", typeof ctotalprice);
+
+	        });
+	        
+	        // 🟢 총 가격 업데이트
+		    const totalPriceElement = document.querySelector('.cart-total strong');
+		    console.log("totalPriceElement 값 : ", totalPriceElement);  // null이 아니어야 합니다.
+		    if (totalPriceElement) {
+		        totalPriceElement.innerText = "총가격 : " + ctotalprice + "원";
+		        totalPriceElement.classList.add("text-end");  // 클래스 추가
+		    }
+			
+	        // 🟢 장바구니가 비었으면 총 가격 숨기기
+	        if (cartItems.length === 0) {
+	            document.querySelector(".cart-total").style.display = "none";
+	        } else {
+	            document.querySelector(".cart-total").style.display = "block";
+	        }
+	    }
+	 
+	    function checkIfCartIsEmpty() {
+	        let cartItems = document.querySelectorAll(".cart-item");
+	        let cartContainer = document.querySelector(".cart-container");
+	
+	        if (cartItems.length === 0) {
+	            let emptyMessage = document.createElement("p");
+	            emptyMessage.innerText = "장바구니가 비어 있습니다.";
+	            emptyMessage.id = "emptyCartMessage";
+	
+	            if (!document.getElementById("emptyCartMessage")) {
+	                cartContainer.appendChild(emptyMessage);
+	            }
+	
+	            let totalPriceElement = document.querySelector(".cart-total");
+	            if (totalPriceElement) {
+	                totalPriceElement.style.display = "none";
+	            }
+	        }
+	    }
+	</script>
 </head>
 
 <body>
-<div class="wrapper">
-<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
-    <div class="cart-container">
-        <h1>장바구니</h1>
+	<div class="wrapper">
+		<%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
+		<div class="cart-container">
+		    <h1>장바구니</h1>
 		
+		    <!-- 장바구니가 비어있을 경우 메시지 -->
+		    <c:if test="${emptyCart == true }">
+		        <p>장바구니가 비어 있습니다.</p>
+		    </c:if>
 		
-		<c:if test="${emptyCart == true }">
-			<p>장바구니가 비어 있습니다.</p>
-		</c:if>
+		    <!-- 장바구니 항목이 있을 경우 -->
+		    <c:if test="${emptyCart != true }">
+		        <c:set var="totalprice" value="0" />
 		
-		<c:if test="${emptyCart != true }">
-		<c:set var="totalprice" value="0" /> <!-- 총 가격을 저장할 변수 0으로 설정 -->
+		        <!-- 상품 항목들 -->
+		        <div class="cart-item">
+		            <div>상품 이미지</div>
+		            <div>상품 이름</div>
+		            <div>수량</div>
+		            <div>가격</div>
+		            <div>합계</div>
+		            <div>삭제</div>
+		        </div>
 		
-        <c:forEach var="item" items="${cartitems}">
-            <div id="productnum_${item.productnum}" class="cart-item">
-                <div>상품 번호 : ${item.productnum}</div>
-                <div>상품 이름 : ${item.productname}</div>
-                <div>가격 : ${item.price}원</div>
-                <div>수량 : ${item.quantity}개</div>
-                <div>합계 : ${item.price * item.quantity}원</div>
-                <button onclick = "deletecartitem('${item.productnum}')">삭제</button> <!-- 삭제 버튼 추가 -->
-                ----------------------------------
-            </div>
-            
-            <c:set var="totalprice" value="${totalprice + (item.price * item.quantity) }" />
-            
-        </c:forEach>
-        	
-        	<div class="cart-total">
-            	<strong>총가격 : ${totalprice }원</strong>
-            </div>
-         </c:if>   
-	<button onclick="requestPay()">결제하기</button><!-- 결제하기 버튼 -->
-	
-    </div>
+		        <c:forEach var="item" items="${cartitems}">
+		            <div id="productnum_${item.productnum}" class="cart-item">
+		                <!-- 상품 이미지 -->
+		                <div><img src="resources/product_img/${item.productimage_path}" alt="상품 이미지"></div>
+		                <!-- 상품 이름 -->
+		                <div>${item.productname}</div>
+		                <!-- 수량 -->
+		                <div class="product-quantity">${item.quantity}개</div>
+		                <!-- 가격 -->
+		                <div class="product-price">${item.price}원</div>
+		                <!-- 합계 -->
+		                <div>${item.price * item.quantity}원</div>
+
+		                <!-- 삭제 버튼 -->
+		                <div><button class="btn btn-danger btn-sm" onclick="deletecartitem('${item.productnum}')">삭제</button></div>
+		            </div>
+		            <c:set var="totalprice" value="${totalprice + (item.price * item.quantity)}" />
+		        </c:forEach>
+		
+		        <!-- 총 가격 -->
+		        <div class="cart-total">
+		            <strong>총가격 : ${totalprice}원</strong>
+		        </div>
+		
+		        <!-- 결제 버튼 -->
+		        <div class="payment-btn">
+		            <button class="btn btn-primary">결제하기</button>
+		        </div>
+		    </c:if>
+		</div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
-</div>
+	<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+	</div>
 </body>
 </html>
