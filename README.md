@@ -9,19 +9,22 @@
     + 사용자가 제품을 쉽게 탐색하고 구매할 수 있는 쇼핑몰 구현
     + 관리자 페이지를 통해 상품, 주문, 게시판을 관리
     + 결제 기능을 통해 실제 쇼핑몰의 주요 기능 시뮬레이션
-* 개발 기간 : 2024/06 ~ 2024/10
+* 개발 기간 : 2024/06 ~
 * 개발자 : 정승원
 * 깃허브 : <https://github.com/jsw6542/sideproject>
 - - -
 # 📌 주요 기능
 ## 일반 사용자
 * 회원가입 및 로그인
- + 사용자의 회원 정보는 암호화되어 안전하게 저장
-* 상품 검색 및 카테고리 탐색
- + Bootstrap 기반으로 반응형 디자인 제공
+ + 세션을 통해 로그인 정보를 저장
+* 상품 리스트 및 검색
+ + home 화면에는 최근 올라온 상품 8개가 보이게 됨
+ + 전체 상품을 클릭할 시 페이징 처리된 전체 상품이 8개씩 나타남
+ + 상품 검색을 통해 원하는 검색
 * 장바구니 및 주문 기능
  + 실시간 장바구니 상태 확인
- + PortOne(구 iamport) Kakao Pay API 연동으로 간편 결제 기능 구현
+ + 재로그인시 db에 있는 장바구니 정보를 가져와 세션에 저장해 장바구니 정보 보존
+ + iamport Kakao Pay API 연동으로 간편 결제 기능 구현
 * 게시판 기능
  + 공지사항, 문의, 리뷰 관리
  + 최신 공지 상단 고정 및 다양한 게시판 정렬 방식 제공
@@ -29,23 +32,19 @@
  * 상품 관리
   + 상품 추가, 수정, 삭제
   + 페이징 및 정렬 기능으로 효율적 상품 관리
- * 주문 관리
-  + 상세 주문 내역 확인 및 관리
-  + 회원 관리
-  + 사용자 정보 확인 및 관리
 - - -
 ### 🛠 기술 스택
 * 백엔드: Spring MVC, MyBatis, Oracle DB
 * 프론트엔드: HTML, CSS (Bootstrap), JavaScript (jQuery)
-* 결제 연동: Kakao Pay API (PortOne)
+* 결제 연동: Kakao Pay API (import)
 * 개발 도구: STS3 (Spring Tool Suite)
 * 버전 관리: Git & GitHub
 - - -
 # 📸 프로젝트 소개
 ![Image](https://github.com/user-attachments/assets/18d586c0-834f-44fb-90a8-25b4302b26ec)
-![Image](https://github.com/user-attachments/assets/341e7608-36f1-41bb-a2b5-4b0b568f22b0)
 프로젝트의 메인 화면으로 헤더를 통해 여러기능 사용가능
 - - -
 # 🗂 참고 자료
 * Spring 공식 문서
 * Oracle Database 공식 문서
+* import 공식 문서
