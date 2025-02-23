@@ -21,11 +21,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    )
 	</insert>
 	
-
-	
 	<select id="orders_getcartnum" resultType="int" parameterType="orders">
     	select cartnum from cart where memberid = #{memberid}
 	</select>
+	
+	<!-- orders 주문목록 조회 -->
+<!-- 	<select id="selectProductListByOrder" resultType="ProductVO">
+		select product.*
+		from product
+		join orderdetail on product.productnum = orderdetail.productnum
+		join orders on orderdetail.ordernum = orders.ordernum
+		where orders.memberid = #{memberid}
+		
+	    SELECT product.*
+	    FROM product
+	    JOIN orderdetail od ON product.productnum = od.productnum
+	    JOIN orders o ON od.ordernum = o.ordernum
+	    WHERE o.memberid = #{memberid}
+	</select> -->
+	
+	<!-- 주문목록 조회 -->
+	<select id="orders_orderlist" resultType="OrderListVO" parameterType="orders">
+		select o.ordernum, o.paymenttime, o.totalprice, od.buyername, 
+			   od.buyeradress1,od.buyeradress3, od.quantity, od.result, p.productname
+		from orders o
+		join orderdetail od on o.ordernum = od.ordernum
+		join product p on od.productnum = p.productnum
+		where o.memberid = #{memberid}
+		order by o.paymenttime desc;
+	</select>
+	
 	
 </mapper>
 

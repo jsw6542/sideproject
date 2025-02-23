@@ -55,19 +55,17 @@
                 <c:forEach var="product" items="${productlist}">
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <!-- Product image-->
+                            <!-- 상품사진 -->
                             <img class="card-img-top" src="resources/product_img/${product.productimage_path}"
                                  alt="${product.productname}" style="cursor: pointer;"
                                  onclick="location.href='productdetail.do?productnum=${product.productnum}'"/>
-                            <!-- Product details-->
+                            <!--상품 상세-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><c:out value="${product.productname}"/></h5>
-                                    <!-- Product description-->
-                                    <%-- <p><c:out value="${product.content}"/></p> --%>
-                                    <!-- Product price-->
-                                    <p><c:out value="${product.price}"/>원</p>
+                                    <!-- 상품이름 -->
+                                    <h5 class="fw-bolder">${product.productname}</h5>
+                                    <!-- 가격 -->
+                                    <p>${product.price}원</p>
                                 </div>
                             </div>
                             <!-- Product actions-->

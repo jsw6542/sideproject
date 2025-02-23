@@ -33,7 +33,9 @@ import dao.OrdersDAO;
 import vo.CartitemsVO;
 import vo.MemberVO;
 import vo.OrderDetailVO;
+import vo.OrderListVO;
 import vo.OrdersVO;
+import vo.ProductVO;
 
 @Controller
 public class OrdersController {
@@ -186,6 +188,46 @@ public class OrdersController {
 	private String extractAccessToken(String jsonResponse) {
 		JSONObject json = new JSONObject(jsonResponse);
 		return json.getJSONObject("response").getString("access_token");
+	}
+	
+	//주문목록 확인
+	@RequestMapping("/orderlist.do")
+	private String orderlist(Model model,String memberid,HttpSession session) {
+		//주문목록 가져오기
+		session.getAttribute(memberid);
+		
+		List<OrderListVO> orderlist = orders_dao.selectorderslist(memberid);
+		
+	    // 콘솔 출력 (디버깅용)
+	    for (OrderListVO order : orderlist) {
+	        System.out.println("주문번호: " + order.getOrdernum());
+	        System.out.println("결제시간: " + order.getPaymenttime());
+	        System.out.println("총 가격: " + order.getTotalprice());
+	        System.out.println("구매자 이름: " + order.getBuyername());
+	        System.out.println("주소1: " + order.getBuyeradress1());
+	        System.out.println("주소3: " + order.getBuyeradress3());
+	        System.out.println("구매 수량: " + order.getQuantity());
+	        System.out.println("배송 상태: " + order.getResult());
+	        System.out.println("상품 이름: " + order.getProductname());
+	        System.out.println("------------------------------");
+	    }
+		model.addAttribute("orderlist", orderlist);
+		
+		//List<OrderDetailVO> orderdetail = orders_dao.selectorderdetaillist(memberid);
+		
+		//orders에서 가져오기
+		//List<OrdersVO> orders = orders_dao.selectorderslist(memberid);
+		
+		//product에서 가져오기
+		//List<ProductVO> product = orders_dao.selectproductlist(memberid);
+		
+		// ★★★★★★★★★★ 3개 말고 하나의 리스트로 쿼리의 join을 이용해 한번에 가져오기! vo를 생성해 필요한 데이터를 추가 vo이름은 OrderlistVO로 할것
+		
+		//model.addAttribute("orderdetail", orderdetail);
+		//model.addAttribute("orders", orders);
+		//model.addAttribute("product", product);
+		
+		return VIEW_PATH + "orderlist.jsp";
 	}
 
 }

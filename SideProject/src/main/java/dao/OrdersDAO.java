@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import vo.CartVO;
 import vo.CartitemsVO;
 import vo.OrderDetailVO;
+import vo.OrderListVO;
 import vo.OrdersVO;
+import vo.ProductVO;
 
 public class OrdersDAO {
 
@@ -67,5 +69,24 @@ public class OrdersDAO {
 		return insertorderdetail;
 	}
     
-    
+    //orderdetail에서 주문목록 가져오기
+	/*
+	 * public List<OrderDetailVO> selectorderdetaillist(String memberid) {
+	 * List<OrderDetailVO> orderdetail =
+	 * sqlSession.selectList("od.orderdetail_list", memberid); return orderdetail; }
+	 */
+	
+	//orders에서 주문목록 가져오기
+	public List<OrderListVO> selectorderslist(String memberid) {
+		List<OrderListVO> orders = sqlSession.selectList("o.orders_orderlist", memberid);
+		return orders;
+	}
+	
+	//product에서 주문목록 가져오기
+	/*
+	 * public List<ProductVO> selectproductlist(String memberid) { List<ProductVO>
+	 * product = sqlSession.selectList("o.product_list", memberid); return product;
+	 * }
+	 */
+		
 }
