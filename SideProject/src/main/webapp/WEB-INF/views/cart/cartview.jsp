@@ -328,7 +328,7 @@
 		
 		        <!-- 결제 버튼 -->
 		        <div class="payment-btn">
-		            <button class="btn btn-primary">결제하기</button>
+		            <button class="btn btn-primary" onclick="requestPay()">결제하기</button><!-- 결제하기 버튼 -->
 		        </div>
 		    </c:if>
 		</div>

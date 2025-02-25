@@ -62,6 +62,8 @@ public class CartitemsController {
 			model.addAttribute("cartitems", cartitems); // 장바구니에 상품이 있을 때
 		}
 
+		
+		
 		String merchantuid = "payment-" + System.currentTimeMillis() + "-" + cartnum;
 		model.addAttribute("merchantuid", merchantuid);
 		System.out.println(merchantuid);

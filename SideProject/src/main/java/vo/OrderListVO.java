@@ -1,18 +1,21 @@
 package vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class OrderListVO {
-	private String buyername,productname,buyeradress1,buyeradress3;
-	private int ordernum,quantity,result,totalprice;
+	private String buyername,buyeradress1,buyeradress3;
+	private int ordernum,result;
 	private Timestamp paymenttime;
+
+	private List<OrderListItemVO> items;
 	
-	
-	public int getTotalprice() {
-		return totalprice;
+
+	public List<OrderListItemVO> getItems() {
+		return items;
 	}
-	public void setTotalprice(int totalprice) {
-		this.totalprice = totalprice;
+	public void setItems(List<OrderListItemVO> items) {
+		this.items = items;
 	}
 	public Timestamp getPaymenttime() {
 		return paymenttime;
@@ -26,12 +29,7 @@ public class OrderListVO {
 	public void setBuyername(String buyername) {
 		this.buyername = buyername;
 	}
-	public String getProductname() {
-		return productname;
-	}
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
+
 	public String getBuyeradress1() {
 		return buyeradress1;
 	}
@@ -49,12 +47,6 @@ public class OrderListVO {
 	}
 	public void setOrdernum(int ordernum) {
 		this.ordernum = ordernum;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 	public int getResult() {
 		return result;

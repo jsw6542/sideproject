@@ -3,42 +3,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>주문 목록</title>
-</head>
-<body>
-<!-- 주문목록 확인 페이지 -->
-주문 목록은 장바구니 처럼 디자인
-
-주문번호 구매날짜 상품이름 구매갯수 배송중or배송완료 가격  / 구매자이름 배송지
-orders에서 구매날짜 나머지를 orderdetail에서 가져와야함 상품이름은 orderdetail에 있는 productnum에서 가져온다
-<!-- 하나의 vo를 만들어서 model을 orderlist로 주고 가져온다 -->
-<div class = "orderlist_container">
-	<div class = orderlist>
-		<c:forEach var="orderlist" items="${orderlist }">
-			<div>주문자 : ${orderlist.buyername }</div>
-			<div>주문번호 : ${orderlist.ordernum }</div>
-			<div>상품 이름 : ${orderlist.productname }</div>
-			<div>구매수량 : ${orderlist.quantity }</div>
-			<div>배송지 : ${orderlist.buyeradress1 } ${orderlist.buyeradress3 }</div>   
-			<div>배송현황 : 
-                <c:choose>
-                    <c:when test="${orderlist.result == 1}">배송 준비</c:when>
-                    <c:when test="${orderlist.result == 2}">배송 중</c:when>
-                    <c:when test="${orderlist.result == 3}">배송 완료</c:when>
-                    <c:otherwise>정보 없음</c:otherwise>
-                </c:choose>
-            </div>
-            구매날짜 orders에 orderdate를 timestamp로 바꿔야할듯하다
-            결제 가격 orders에 totalprice
-		 </c:forEach>
+	<head>
+		<meta charset="UTF-8">
+		<title>주문 목록</title>
 		
-	</div>
+	</head>
+<body>
+<div class="container mt-4">
+    <div class="row">
+        <c:forEach var="order" items="${orderlist}">
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">주문번호: ${order.ordernum}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>주문자:</strong> ${order.buyername}</p>
+                        <p><strong>배송지:</strong> ${order.buyeradress1} ${order.buyeradress3}</p>
+                        <p><strong>구매날짜:</strong> ${order.paymenttime}</p>
+                        <p><strong>배송현황:</strong>
+                            <c:choose>
+                                <c:when test="${order.result == 1}">배송 준비</c:when>
+                                <c:when test="${order.result == 2}">배송 중</c:when>
+                                <c:when test="${order.result == 3}">배송 완료</c:when>
+                                <c:otherwise>정보 없음</c:otherwise>
+                            </c:choose>
+                        </p>
 
+                        <hr>
 
+                        <h6>주문 상품 목록:</h6>
+                        <c:forEach var="item" items="${order.items}">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="resources/product_img/${item.productimage_path}" alt="${item.productname}" class="img-thumbnail me-3" width="80">
+                                <div>
+                                    <p class="mb-1"><strong>${item.productname}</strong></p>
+                                    <p class="mb-0">수량: ${item.quantity}개 | 가격: ${item.totalprice}원</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="js/scripts.js"></script>
+
+    <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </div>
 </body>
+
 </html>
 
 

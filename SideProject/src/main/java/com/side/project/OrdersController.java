@@ -33,6 +33,7 @@ import dao.OrdersDAO;
 import vo.CartitemsVO;
 import vo.MemberVO;
 import vo.OrderDetailVO;
+import vo.OrderListItemVO;
 import vo.OrderListVO;
 import vo.OrdersVO;
 import vo.ProductVO;
@@ -46,7 +47,7 @@ public class OrdersController {
 	@Autowired
 	ServletContext application;
 
-	public static final String VIEW_PATH = "/WEB-INF/views/";
+	public static final String VIEW_PATH = "/WEB-INF/views/orders/";
 
 	public OrdersController(OrdersDAO orders_dao) {
 		this.orders_dao = orders_dao;
@@ -86,10 +87,12 @@ public class OrdersController {
 	 * "YfQBhATjbUPAk4ncvzm6r3C89ZCHJ62CrdOQRRSQ5ynoKLWYMDuXNOWC0QM6va2n5YZxBb5f74WaBkaG";
 	 * // 아임포트 API Secret
 	 */
-
+	
+	// 결제 후 db 저장
 	@RequestMapping(value = "/orders/complete", method = RequestMethod.POST)
 	@ResponseBody
-	public String completePayment(@RequestParam("imp_uid") String impuid, HttpSession session, Model model) {
+	public String completePayment(@RequestParam("imp_uid") String impuid,
+								  HttpSession session, Model model) {
 	    
 	    try {
 	        System.out.println("impuid 가져옴! : " + impuid);
@@ -99,17 +102,6 @@ public class OrdersController {
 	        
 	        System.out.println("Access Token: " + accessToken); // 액세스 토큰 출력
 
-	        
-	        OrdersVO orders = new OrdersVO();
-	        orders.setImpuid(impuid);
-	        System.out.println("impuid: " + impuid);
-	        orders.setMemberid(login.getMemberid());
-	        System.out.println("memberid: " + login.getMemberid());
-	        
-	        // 데이터베이스 처리 부분을 점검
-	        orders_dao.paymentorder(orders);
-
-	        
 	        // 세션에서 사용자 정보와 관련된 주문 상세 정보를 가져옴
 	        String orderName = login.getMembername();
 	        String orderZipCode = login.getZip_code();
@@ -123,17 +115,49 @@ public class OrdersController {
 	        
 	        List<CartitemsVO> orderitems = orders_dao.selectorderitems(cartnum);
 	        
+	        for (CartitemsVO item : orderitems) {
+	            System.out.println("상품번호: " + item.getProductnum());
+	            System.out.println("수량: " + item.getQuantity());
+	            System.out.println("상품명: " + item.getProductname());
+	            System.out.println("가격: " + item.getPrice());
+	            System.out.println("이미지 경로: " + item.getProductimage_path());
+	            System.out.println("-------------------------");
+	        }
+	        
 	        if (orderitems == null || orderitems.isEmpty()) {
 	            // 장바구니 아이템이 없는 경우 처리
 	            model.addAttribute("errorMessage", "장바구니에 아이템이 없습니다.");
 	            return "errorPage";
 	        }
 	        
+
+	        
+	        // 장바구니 총 가격 계산 추가
+	        int totalprice = 0;
+	        for (CartitemsVO item : orderitems) {
+	            totalprice += item.getPrice() * item.getQuantity();
+	        }
+	        System.out.println("계산된 totalprice = " + totalprice);	        
+	        
+	        OrdersVO orders = new OrdersVO();
+	        orders.setImpuid(impuid);
+	        System.out.println("impuid: " + impuid);
+	        orders.setMemberid(login.getMemberid());
+	        System.out.println("memberid: " + login.getMemberid());
+	        orders.setTotalprice(totalprice);
+	        System.out.println("totalprice: " + totalprice);
+	        
+	        // 데이터베이스 처리 부분을 점검
+	        orders_dao.paymentorder(orders);
+
+	        
+
+	        
 	        
 	        int ordernum = orders.getOrdernum();
 	        System.out.println("ordernum = "+ ordernum);
-	        // 주문 상세 정보를 DB에 삽입
 	        
+	        // 주문 상세 정보를 DB에 삽입
 	        for (CartitemsVO item : orderitems) {
 	            OrderDetailVO orderDetail = new OrderDetailVO();
 	            
@@ -157,7 +181,7 @@ public class OrdersController {
 	    }
 	}
 
-	// 액세스 토큰 발급 메서드
+	// 액세스 토큰 발급
 	private String getAccessToken() throws Exception {
 		String url = "https://api.iamport.kr/users/getToken";
 		String impKey = "6482105521256214"; // Iamport API Key
@@ -192,25 +216,42 @@ public class OrdersController {
 	
 	//주문목록 확인
 	@RequestMapping("/orderlist.do")
-	private String orderlist(Model model,String memberid,HttpSession session) {
+	private String orderlist(Model model,HttpSession session) {
+		
 		//주문목록 가져오기
-		session.getAttribute(memberid);
+		MemberVO loginuser = (MemberVO) session.getAttribute("login");
+		
+		if (loginuser == null) {
+		    System.out.println("⚠ 로그인 정보 없음! 로그인 여부를 확인하세요.");
+		    return "redirect:/login.jsp"; // 로그인 페이지로 이동
+		}
+		
+		String memberid = loginuser.getMemberid();
+		System.out.println("로그인중인 memberid: " + memberid);
 		
 		List<OrderListVO> orderlist = orders_dao.selectorderslist(memberid);
 		
 	    // 콘솔 출력 (디버깅용)
+	    // 콘솔 출력 (디버깅용)
 	    for (OrderListVO order : orderlist) {
 	        System.out.println("주문번호: " + order.getOrdernum());
 	        System.out.println("결제시간: " + order.getPaymenttime());
-	        System.out.println("총 가격: " + order.getTotalprice());
 	        System.out.println("구매자 이름: " + order.getBuyername());
 	        System.out.println("주소1: " + order.getBuyeradress1());
 	        System.out.println("주소3: " + order.getBuyeradress3());
-	        System.out.println("구매 수량: " + order.getQuantity());
 	        System.out.println("배송 상태: " + order.getResult());
-	        System.out.println("상품 이름: " + order.getProductname());
-	        System.out.println("------------------------------");
+
+	        // 주문 상품 정보 출력
+	        System.out.println("=== 주문 상품 목록 ===");
+	        for (OrderListItemVO item : order.getItems()) {
+	            System.out.println("상품명: " + item.getProductname());
+	            System.out.println("상품 이미지: " + item.getProductimage_path());
+	            System.out.println("수량: " + item.getQuantity());
+	            System.out.println("총 가격: " + item.getTotalprice());
+	            System.out.println("------------------------------");
+	        }
 	    }
+	    
 		model.addAttribute("orderlist", orderlist);
 		
 		//List<OrderDetailVO> orderdetail = orders_dao.selectorderdetaillist(memberid);

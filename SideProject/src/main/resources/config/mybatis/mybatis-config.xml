@@ -18,6 +18,8 @@
 		 <typeAlias type="vo.CartitemsVO" alias="cartitems"/>
 		 <typeAlias type="vo.CartitemsVOtwo" alias="cartitemstwo"/>
 		 <typeAlias type="vo.BoardVO" alias="board"/>
+		 <typeAlias type="vo.OrderListVO" alias="orderlist"/>
+		 <typeAlias type="vo.OrderListItemVO" alias="orderlistitem"/>
 	</typeAliases>
 	
 	<mappers>

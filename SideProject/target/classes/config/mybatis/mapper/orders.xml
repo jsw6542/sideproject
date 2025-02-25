@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        #{memberid}, 
 	        sysdate, 
 	        #{impuid}, 
-	        0,
+	        #{totalprice},
 	        CURRENT_TIMESTAMP 
 	    )
 	</insert>
@@ -41,15 +41,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<!-- 주문목록 조회 -->
-	<select id="orders_orderlist" resultType="OrderListVO" parameterType="orders">
-		select o.ordernum, o.paymenttime, o.totalprice, od.buyername, 
-			   od.buyeradress1,od.buyeradress3, od.quantity, od.result, p.productname
+	<select id="orders_orderlist" resultMap="OrderListMap" parameterType="orders">
+		select o.ordernum,
+			   o.paymenttime,
+			   o.totalprice,
+			   od.buyername, 
+			   od.buyeradress1,
+			   od.buyeradress3,
+			   od.quantity,
+			   od.result,
+			   p.productname,
+			   p.productimage_path
 		from orders o
 		join orderdetail od on o.ordernum = od.ordernum
 		join product p on od.productnum = p.productnum
 		where o.memberid = #{memberid}
-		order by o.paymenttime desc;
+		order by o.paymenttime desc
 	</select>
+	
+	<resultMap id="OrderListMap" type="orderlist">
+	    <id property="ordernum" column="ordernum"/>
+	    <result property="paymenttime" column="paymenttime"/>
+	    <result property="buyername" column="buyername"/>
+	    <result property="buyeradress1" column="buyeradress1"/>
+	    <result property="buyeradress3" column="buyeradress3"/>
+	    <result property="result" column="result"/>
+	
+	    <!-- 주문별 상품 목록 (OrderListItemVO) -->
+	    <collection property="items" ofType="orderlistitem">
+	    	<result property="totalprice" column="totalprice"/>
+	        <result property="productname" column="productname"/>
+	        <result property="productimage_path" column="productimage_path"/>
+	        <result property="quantity" column="quantity"/>
+	    </collection>
+	</resultMap>	
 	
 	
 </mapper>

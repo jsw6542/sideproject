@@ -29,7 +29,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 주문한 상품을 조회 -->
 	<select id="cartitems_selectorderitems" parameterType="int" resultType="cartitems">
-    	select * from cartitems where cartnum = #{cartnum}
+    	    SELECT 
+        ci.CARTNUM, 
+        ci.PRODUCTNUM, 
+        ci.QUANTITY, 
+        p.PRODUCTNAME, 
+        p.PRICE, 
+        p.PRODUCTIMAGE_PATH
+    FROM cartitems ci
+    JOIN product p ON ci.PRODUCTNUM = p.PRODUCTNUM
+    WHERE ci.CARTNUM = #{cartnum}
 	</select>
 	
 	<!-- 장바구니에 담긴 상품 삭제 -->

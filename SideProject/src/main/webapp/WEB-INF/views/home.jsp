@@ -17,6 +17,12 @@
 <div class="wrapper">
 <%@ include file="/WEB-INF/views/layout/header_main.jsp"%>
 
+		<form class="d-flex" action="orderlist.do" method="get">
+			<button class="btn btn-outline-dark " type="submit">
+	             주문목록 테스트용
+			</button>
+		</form>
+
 		<form action="productlist.do" method="get" class="text-center mb-4">
 		    <div class="input-group" style="max-width: 400px; margin-left: 340px; margin-top: 50px;">
 		        <input type="text" class="form-control" name="searchTitle" placeholder="상품명으로 검색" aria-label="상품명으로 검색">

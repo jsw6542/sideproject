@@ -68,7 +68,6 @@
                                     <p>${product.price}원</p>
                                 </div>
                             </div>
-                            <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
                                     <a class="btn btn-outline-dark mt-auto" href="productdetail.do?productnum=${product.productnum}">자세히 보기</a>
@@ -78,7 +77,7 @@
                     </div>
                 </c:forEach>
             </div>
-            <!-- 페이지네이션 추가 -->
+            <!-- 페이지 추가 -->
             <div class="d-flex justify-content-center mt-4">
                 <p>${pageMenu}</p>
             </div>

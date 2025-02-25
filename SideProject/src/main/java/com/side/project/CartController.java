@@ -62,6 +62,7 @@ public class CartController {
 		return "redirect:/home.do"; // 새로고침 없이 적용하기
 	}
 	
+	// 장바구니 상품 삭제
 	@RequestMapping(value = "/cart/delete", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteCartItem(@RequestParam("productnum") int productnum, HttpSession session) {
